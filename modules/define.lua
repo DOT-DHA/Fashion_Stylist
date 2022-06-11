@@ -15,7 +15,7 @@ function define_items()
   -- add the item to the workbench as a recipe
   recipe = {
     { item = "dye1", amount = 10 },
-    { item = "sawdust1", amount = 10 }
+    { item = "sawdust1", amount = 5 }
   }
   res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_red", recipe)
 
@@ -32,7 +32,7 @@ function define_npc()
     tooltip = "Need a new look?",
     shop = true,
     walking = true,
-    stock = {"log", "log", "log", "log", "log", "log", "log", "log", "log", "log"}, -- max 10
+    stock = {MOD_NAME .. "_hair_dye_red"}, -- max 10
     specials = {"log", "log", "log"}, -- must be 3
     dialogue = {
       "Wot ya mean av I gots anything other than logs to sell??",
