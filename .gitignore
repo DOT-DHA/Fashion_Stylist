@@ -12,6 +12,7 @@
 *.sqlite
 *.sln
 *.gitignore
+.vs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
