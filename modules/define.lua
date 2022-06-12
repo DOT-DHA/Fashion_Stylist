@@ -102,6 +102,24 @@ function define_items()
     shop_sell = 5
   }, "sprites/item/hair_dye_mushy.png")
 
+  api_define_item({
+    id = "hair_dye_beenus",
+    name = "Beenus's Special Dye",
+    category = "Decoration",
+    tooltip = "Right click to dye your hair.",
+    shop_buy = 15,
+    shop_sell = 5
+  }, "sprites/item/hair_dye_beenus.png")
+
+  api_define_item({
+    id = "hair_dye_zoobot",
+    name = "ZooBot's Special Dye",
+    category = "Decoration",
+    tooltip = "Right click to dye your hair.",
+    shop_buy = 15,
+    shop_sell = 5
+  }, "sprites/item/hair_dye_zoobot.png")
+
   -- add the item to the workbench as a recipe
   recipe = {
     { item = "dye1", amount = 10 },
@@ -179,8 +197,8 @@ function define_npc()
     tooltip = "Need a new look?",
     specials = {
         MOD_NAME .. "_hair_dye_mushy",
-        MOD_NAME .. "_hair_dye_mushy",
-        MOD_NAME .. "_hair_dye_mushy"
+        MOD_NAME .. "_hair_dye_zoobot",
+        MOD_NAME .. "_hair_dye_beenus"
     }, -- must be 3
     stock = {
         MOD_NAME .. "_hair_dye_red",
