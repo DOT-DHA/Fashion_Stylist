@@ -27,9 +27,6 @@ end
 
 function ready()
 
-  api_log("ready", "testing")
-
-
 end
 
 function click(button, click_type)
@@ -54,18 +51,13 @@ function click(button, click_type)
                     api_sp(mouse["id"], "item", "")
                 end
                 --Do something with your item here
-                if palette.h2 ~= {255, 0, 0} or palette.h1 ~= {230, 0, 0} then
-                    palette.h2 = {255, 0, 0}
-                    palette.h1 = {230, 0, 0}
-                    api_sp(player, "pal", palette)
-                    api_use_item(slot["item"], 1)
-                    --palette.h2 = {174, 94, 94}
-                    --palette.h1 = {145, 71, 78}
-                end  
+                palette.h2 = {255, 0, 0}
+                palette.h1 = {230, 0, 0}
+                api_sp(player, "pal", palette)
+                api_use_item(slot["item"], 1)
+                --palette.h2 = {174, 94, 94}
+                --palette.h1 = {145, 71, 78}
             end
         end
     end
-end
-  
-
 end
