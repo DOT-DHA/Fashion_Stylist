@@ -120,70 +120,6 @@ function define_items()
     shop_sell = 5
   }, "sprites/item/hair_dye_zoobot.png")
 
-  -- add the item to the workbench as a recipe
-  recipe = {
-    { item = "dye1", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_red", recipe)
-
-  recipe = {
-    { item = "dye5", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_orange", recipe)
-
-  recipe = {
-    { item = "dye3", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_yellow", recipe)
-
-  recipe = {
-    { item = "dye4", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_green", recipe)
-
-  recipe = {
-    { item = "dye2", amount = 7 },
-    { item = "dye8", amount = 3 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_teal", recipe)
-
-  recipe = {
-    { item = "dye2", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_blue", recipe)
-
-  recipe = {
-    { item = "dye2", amount = 7 },
-    { item = "dye7", amount = 3 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_royal_blue", recipe)
-
-  recipe = {
-    { item = "dye6", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_purple", recipe)
-
-  recipe = {
-    { item = "dye1", amount = 7 },
-    { item = "dye8", amount = 3 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_pink", recipe)
-
-  recipe = {
-    { item = "dye9", amount = 10 },
-    { item = "sawdust1", amount = 5 }
-  }
-  res = api_define_recipe("painting", MOD_NAME .. "_hair_dye_remover", recipe)
-
 end
 
 -- define a new npc
@@ -199,7 +135,7 @@ function define_npc()
         MOD_NAME .. "_hair_dye_mushy",
         MOD_NAME .. "_hair_dye_zoobot",
         MOD_NAME .. "_hair_dye_beenus"
-    }, -- must be 3
+    }, -- must be atleast 3
     stock = {
         MOD_NAME .. "_hair_dye_red",
         MOD_NAME .. "_hair_dye_orange",
