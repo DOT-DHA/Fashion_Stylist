@@ -194,6 +194,32 @@ function click(button, click_type)
                 palette.h1 = {208,126,66}
                 api_sp(player, "pal", palette)
                 api_use_item(slot["item"], 1)
+
+            elseif slot["item"] == MOD_NAME.."_hair_dye_zoobot" then
+
+                if mouse["count"] > 0 then
+                    api_sp(slot["id"], "count", slot["count"] + mouse["count"])
+                    api_sp(mouse["id"], "count", 0)
+                    api_sp(mouse["id"], "item", "")
+                end
+                --Do something with your item here
+                palette.h2 = {0, 255, 132}
+                palette.h1 = {0, 225, 116}
+                api_sp(player, "pal", palette)
+                api_use_item(slot["item"], 1)
+
+            elseif slot["item"] == MOD_NAME.."_hair_dye_beenus" then
+
+                if mouse["count"] > 0 then
+                    api_sp(slot["id"], "count", slot["count"] + mouse["count"])
+                    api_sp(mouse["id"], "count", 0)
+                    api_sp(mouse["id"], "item", "")
+                end
+                --Do something with your item here
+                palette.h2 = {255, 186, 192}
+                palette.h1 = {216, 143, 149}
+                api_sp(player, "pal", palette)
+                api_use_item(slot["item"], 1)
             end
         end
     end
