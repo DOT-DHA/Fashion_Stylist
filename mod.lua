@@ -27,9 +27,6 @@ end
 
 function ready()
 
-  api_log("ready", "testing")
-
-
 end
 
 function click(button, click_type)
@@ -65,7 +62,4 @@ function click(button, click_type)
             end
         end
     end
-end
-  
-
 end
