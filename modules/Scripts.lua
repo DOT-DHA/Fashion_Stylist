@@ -4,7 +4,6 @@ function Command_Rainbow(args)
 
   -- items, objects, and menu objects use your MOD_NAME in their oid
   api_give_item(MOD_NAME .. "_hair_dye_red", 10)
-  api_give_item(MOD_NAME .. "_hair_dye_red", 10)
   api_give_item(MOD_NAME .. "_hair_dye_orange", 10)
   api_give_item(MOD_NAME .. "_hair_dye_yellow", 10)
   api_give_item(MOD_NAME .. "_hair_dye_green", 10)
