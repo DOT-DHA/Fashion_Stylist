@@ -128,8 +128,8 @@ function define_npc()
   --set npc definition
   npc_def = {
     id = 51,
-    name = "Cathy",
-    pronouns = "She/Her",
+    name = "DOT",
+    pronouns = "He/Him",
     tooltip = "Need a new look?",
     specials = {
         MOD_NAME .. "_hair_dye_mushy",
@@ -148,10 +148,10 @@ function define_npc()
         MOD_NAME .. "_hair_dye_pink",
         MOD_NAME .. "_hair_dye_remover"
     }, -- max 10
-    greeting = "Greeting",
+    greeting = "Howdy!",
     dialogue = {
-      "Dialogue 1",
-      "Dialogue 2"
+      "Im starting a new life here in APICO",
+      "The weather is something to get used to, huh?"
     },
     walking = true,
     shop = true
