@@ -31,12 +31,9 @@ function ready()
 
     player = api_get_player_instance()
     palette = api_gp(player, "pal")
-    pSlots = api_get_slots(player)
 
     api_dp(player, "base_pal", palette)
     api_log("ready", api_gp(player, "base_pal"))
-
-    for i, v in pairs(pSlots) do api_log("pairs loop", v["id"]) end
         
 
 end
