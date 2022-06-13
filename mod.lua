@@ -26,27 +26,20 @@ base_colors = {
 
 --first is base second is highlight
 hair_colors = {
-{      {215, 0,0},     {245, 0, 0} }, 
-{  {118, 91, 105},    {94, 73, 90} }, 
-{ {149, 117, 126},  {118, 91, 105} }, 
-{ {162, 134, 142}, {149, 117, 126} }, 
-{   {115, 60, 78},    {97, 50, 66} }, 
-{   {174, 94, 94},   {145, 71, 78} }, 
-{  {212, 134, 83},  {202, 118, 78} }, 
-{  {237, 184, 92},  {209, 147, 71} }, 
-{ {250, 211, 112},  {237, 184, 92} }, 
-{  {93, 176, 154},  {75, 155, 142} }, 
-{  {87, 142, 154},  {66, 111, 128} }, 
-{  {69, 165, 201},  {59, 142, 186} }, 
-{ {113, 186, 214},  {69, 165, 201} }, 
-{ {200, 213, 218}, {166, 184, 196} }, 
-{ {233, 230, 226}, {207, 204, 202} }, 
-{ {247, 219, 203}, {235, 204, 186} }, 
-{ {235, 204, 186}, {227, 185, 161} }, 
-{ {227, 185, 161}, {217, 163, 139} }, 
-{ {217, 163, 139}, {194, 131, 116} }, 
-{  {149, 108, 97},   {129, 88, 84} }
+red         = {     {215, 0, 0},     {245, 0, 0} }, 
+orange      = {   {215, 107, 0},   {245, 122, 0} }, 
+yellow      = {   {215, 215, 0},   {245, 245, 0} }, 
+green       = {     {0, 215, 0},     {0, 245, 0} }, 
+teal        = {   {0, 215, 215},   {0, 245, 245} }, 
+blue        = {   {0, 107, 215},   {0, 122, 245} }, 
+royal_blue  = {     {0, 0, 215},     {0, 0, 245} }, 
+purple      = {   {107, 0, 215},   {122, 0, 245} }, 
+pink        = {   {215, 0, 107},   {245, 0, 122} },
+mushy       = {  {208, 126, 66},  {224, 157, 83} },
+zoobot      = {   {0, 225, 116},   {0, 255, 132} },
+beenus      = { {216, 143, 149}, {255, 186, 192} }
 }
+
 
 function register()
   return {
@@ -59,7 +52,7 @@ end
 function init()
 
     -- turn on devmode
-    api_set_devmode(true)
+    --api_set_devmode(true)
     
     -- log to the console
     api_log("init", "Hello World!")
@@ -70,11 +63,8 @@ function init()
 
     api_define_command("/rainbow","Command_Rainbow")
 
-    api_log("base_colors > init", base_colors)
 
-
-  return "Success"
-
+    return "Success"
 end
 
 function ready()
@@ -104,10 +94,10 @@ function click(button, click_type)
                     isOwned = true 
                 end
             end
-
+            
             if isOwned then
 
-                if slot["item"] == MOD_NAME.."_hair_dye_red" then
+                if mouse["item"] == MOD_NAME.."_hair_dye_red" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -115,12 +105,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h1 = hair_colors[1][1]
-                    palette.h2 = hair_colors[1][2]
+                    palette.h1 = hair_colors["red"][1]
+                    palette.h2 = hair_colors["red"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_orange" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_orange" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -128,12 +118,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {245, 122, 0}
-                    palette.h1 = {215, 107, 0}
+                    palette.h1 = hair_colors["orange"][1]
+                    palette.h2 = hair_colors["orange"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_yellow" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_yellow" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -141,12 +131,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {245, 245, 0}
-                    palette.h1 = {215, 215, 0}
+                    palette.h1 = hair_colors["yellow"][1]
+                    palette.h2 = hair_colors["yellow"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_green" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_green" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -154,12 +144,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {0, 245, 0}
-                    palette.h1 = {0, 215, 0}
+                    palette.h1 = hair_colors["green"][1]
+                    palette.h2 = hair_colors["green"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_teal" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_teal" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -167,12 +157,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {0, 245, 245}
-                    palette.h1 = {0, 215, 215}
+                    palette.h1 = hair_colors["teal"][1]
+                    palette.h2 = hair_colors["teal"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_blue" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_blue" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -180,12 +170,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {0, 122, 245}
-                    palette.h1 = {0, 107, 215}
+                    palette.h1 = hair_colors["blue"][1]
+                    palette.h2 = hair_colors["blue"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_royal_blue" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_royal_blue" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -193,12 +183,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {0, 0, 245}
-                    palette.h1 = {0, 0, 215}
+                    palette.h1 = hair_colors["royal_blue"][1]
+                    palette.h2 = hair_colors["royal_blue"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_purple" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_purple" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -206,12 +196,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {122, 0, 245}
-                    palette.h1 = {107, 0, 215}
+                    palette.h1 = hair_colors["purple"][1]
+                    palette.h2 = hair_colors["purple"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_pink" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_pink" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -219,12 +209,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {245, 0, 122}
-                    palette.h1 = {215, 0, 107}
+                    palette.h1 = hair_colors["pink"][1]
+                    palette.h2 = hair_colors["pink"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_remover" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_remover" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -237,7 +227,7 @@ function click(button, click_type)
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_mushy" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_mushy" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -245,12 +235,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {224,157,83}
-                    palette.h1 = {208,126,66}
+                    palette.h1 = hair_colors["mushy"][1]
+                    palette.h2 = hair_colors["mushy"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_zoobot" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_zoobot" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -258,12 +248,12 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {0, 255, 132}
-                    palette.h1 = {0, 225, 116}
+                    palette.h1 = hair_colors["zoobot"][1]
+                    palette.h2 = hair_colors["zoobot"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
 
-                elseif slot["item"] == MOD_NAME.."_hair_dye_beenus" then
+                elseif mouse["item"] == MOD_NAME.."_hair_dye_beenus" then
 
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
@@ -271,8 +261,8 @@ function click(button, click_type)
                         api_sp(mouse["id"], "item", "")
                     end
                     --Do something with your item here
-                    palette.h2 = {255, 186, 192}
-                    palette.h1 = {216, 143, 149}
+                    palette.h1 = hair_colors["beenus"][1]
+                    palette.h2 = hair_colors["beenus"][2]
                     api_sp(player, "pal", palette)
                     api_use_item(slot["item"], 1)
                 end
