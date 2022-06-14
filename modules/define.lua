@@ -1,124 +1,56 @@
+Hair_Dye = {
+red         = MOD_NAME .. "_hair_dye_red",
+orange      = MOD_NAME .. "_hair_dye_orange",
+yellow      = MOD_NAME .. "_hair_dye_yellow",
+green       = MOD_NAME .. "_hair_dye_green",
+teal        = MOD_NAME .. "_hair_dye_teal",
+blue        = MOD_NAME .. "_hair_dye_blue",
+royal_blue  = MOD_NAME .. "_hair_dye_royal_blue",
+purple      = MOD_NAME .. "_hair_dye_purple",
+pink        = MOD_NAME .. "_hair_dye_pink"
+}
 
+Special_Hair_Dye = {
+mushy       = MOD_NAME .. "_hair_dye_mushy",
+zoobot      = MOD_NAME .. "_hair_dye_zoobot",
+beenus      = MOD_NAME .. "_hair_dye_beenus"
+}
 
-function define_items()
+function define_items() 
 
-  -- define custom items
-  api_define_item({
-    id = "hair_dye_red",
-    name = "Red Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_red.png")
+    -- Define Hair Dye Items
+    for i, v in pairs(Hair_Dye)do
+        api_define_item({
+            id = "hair_dye_".. i,
+            name = string.upper(i) .. " Dye",
+            category = "Decoration",
+            tooltip = "Right click to dye your hair.",
+            shop_buy = 15,
+            shop_sell = 5
+        }, "sprites/item/hair_dye_".. i ..".png")
+    end
 
-  api_define_item({
-    id = "hair_dye_orange",
-    name = "Orange Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_orange.png")
+    -- Define Special Hair Dye Items
+    for i, v in pairs(Special_Hair_Dye)do
+        api_define_item({
+            id = "hair_dye_".. i,
+            name = string.upper(i) .. "'s Special Dye",
+            category = "Decoration",
+            tooltip = "Right click to dye your hair.",
+            shop_buy = 15,
+            shop_sell = 5
+        }, "sprites/item/hair_dye_".. i ..".png")
+    end
 
-  api_define_item({
-    id = "hair_dye_yellow",
-    name = "Yellow Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_yellow.png")
-  
-  api_define_item({
-    id = "hair_dye_green",
-    name = "Green Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_green.png")
-
-  api_define_item({
-    id = "hair_dye_teal",
-    name = "Teal Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_teal.png")
-
-  api_define_item({
-    id = "hair_dye_blue",
-    name = "Blue Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_blue.png")
-
-  api_define_item({
-    id = "hair_dye_royal_blue",
-    name = "Royal Blue Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_royal_blue.png")
-
-  api_define_item({
-    id = "hair_dye_purple",
-    name = "Purple Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_purple.png")
-
-  api_define_item({
-    id = "hair_dye_pink",
-    name = "Pink Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_pink.png")
-
-  api_define_item({
-    id = "hair_dye_remover",
-    name = "Dye Remover",
-    category = "Decoration",
-    tooltip = "Right click to remove dye from your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_remover.png")
-
-  api_define_item({
-    id = "hair_dye_mushy",
-    name = "Mushy's Special Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_mushy.png")
-
-  api_define_item({
-    id = "hair_dye_beenus",
-    name = "Beenus's Special Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_beenus.png")
-
-  api_define_item({
-    id = "hair_dye_zoobot",
-    name = "ZooBot's Special Dye",
-    category = "Decoration",
-    tooltip = "Right click to dye your hair.",
-    shop_buy = 15,
-    shop_sell = 5
-  }, "sprites/item/hair_dye_zoobot.png")
+    --define dye remover item
+    api_define_item({
+      id = "hair_dye_remover",
+      name = "Dye Remover",
+      category = "Decoration",
+      tooltip = "Right click to remove dye from your hair.",
+      shop_buy = 15,
+      shop_sell = 5
+    }, "sprites/item/hair_dye_remover.png")
 
 end
 
