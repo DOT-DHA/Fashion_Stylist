@@ -53,7 +53,7 @@ end
 function init()
 
     -- turn on devmode
-    --api_set_devmode(true)
+    api_set_devmode(true)
     
     -- log to the console
     
