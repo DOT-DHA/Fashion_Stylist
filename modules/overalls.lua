@@ -1,44 +1,34 @@
-Hair_Dye = {
-jeans_gold_button	= MOD_NAME .. "_overall_JGB",
-orange      = MOD_NAME .. "_hair_dye_orange",
-yellow      = MOD_NAME .. "_hair_dye_yellow",
-green       = MOD_NAME .. "_hair_dye_green",
-teal        = MOD_NAME .. "_hair_dye_teal",
-blue        = MOD_NAME .. "_hair_dye_blue",
-royal_blue  = MOD_NAME .. "_hair_dye_royal_blue",
-purple      = MOD_NAME .. "_hair_dye_purple",
-pink        = MOD_NAME .. "_hair_dye_pink"
+Overalls = {
+    Jeans_Gold_Buttons	= MOD_NAME .. "_overall_JGB"
 }
 
-Special_Hair_Dye = {
-mushy       = MOD_NAME .. "_hair_dye_mushy",
-zoobot      = MOD_NAME .. "_hair_dye_zoobot",
-beenus      = MOD_NAME .. "_hair_dye_beenus"
+Special_Overalls = {
+    DOT  = MOD_NAME .. "_overall_DOT"
 }
 function define_items() 
 
     -- Define Hair Dye Items
-    for i, v in pairs(Hair_Dye)do
+    for i, v in pairs(Overalls)do
         api_define_item({
-            id = "hair_dye_".. i,
-            name = string.upper(i) .. " Dye",
+            id = "overall_".. i,
+            name = i:gsub("_", " "),
             category = "Decoration",
-            tooltip = "Right click to dye your hair.",
+            tooltip = "Right click to put on overalls.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/item/hair_dye_".. i ..".png")
+        }, "sprites/overall_items/overall_".. i ..".png")
     end
 
-    -- Define Special Hair Dye Items
-    for i, v in pairs(Special_Hair_Dye)do
+    -- Define Hair Dye Items
+    for i, v in pairs(Overalls)do
         api_define_item({
-            id = "hair_dye_".. i,
-            name = string.upper(i) .. "'s Special Dye",
+            id = "overall_".. i,
+            name = i:gsub("_", " ").. "'s Special Dye",
             category = "Decoration",
-            tooltip = "Right click to dye your hair.",
+            tooltip = "Right click to put on overalls.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/item/hair_dye_".. i ..".png")
+        }, "sprites/overall_items/overall_".. i ..".png")
     end
 
     --define dye remover item
