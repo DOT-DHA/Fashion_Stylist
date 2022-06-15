@@ -3,12 +3,12 @@
 
 overall_colors = {
     Jeans_Gold_Buttons = {     {215, 0, 0},     {215, 0, 0},     {245, 0, 0} }
-}
-
+teal        = MOD_NAME .. "_hair_dye_teal",
+blue        = MOD_NAME .. "_hair_dye_blue",
 Overalls = {
     Jeans_Gold_Buttons	= MOD_NAME .. "_overall_Jeans_Gold_Buttons"
-}
 
+Special_Hair_Dye = {
 Special_Overalls = {
     DOT  = MOD_NAME .. "_overall_DOT"
 }
@@ -21,25 +21,30 @@ function define_overall_items()
         test = api_define_item({
             id = "overall_".. string.lower(i),
             name = i:gsub("_", " "),
-            category = "Decoration",
+    -- Define Hair Dye Items
             tooltip = "Right click to equip overalls.",
-            shop_buy = 15,
-            shop_sell = 5
+        api_define_item({
+            id = "hair_dye_".. i,
         }, "sprites/overall_items/overall_".. string.lower(i) ..".png")
         api_log("define " .. i, test)
-    end
-
+            category = "Decoration",
+            tooltip = "Right click to dye your hair.",
     -- Define Special Overall Items
     for i, v in pairs(Special_Overalls)do
         test = api_define_item({
             id = "overall_".. string.lower(i),
             name = i .. " styled overalls",
-            category = "Decoration",
+    -- Define Special Hair Dye Items
             tooltip = "Right click to equip overalls.",
-            shop_buy = 15,
-            shop_sell = 5
+        api_define_item({
+            id = "hair_dye_".. i,
         }, "sprites/overall_items/overall_".. string.lower(i) ..".png")
         api_log("define " .. i, test)
+            category = "Decoration",
+            tooltip = "Right click to dye your hair.",
+            shop_buy = 15,
+            shop_sell = 5
+        }, "sprites/item/hair_dye_".. i ..".png")
     end
 
     --define dye remover item
