@@ -46,7 +46,7 @@ function register()
   return {
     name = MOD_NAME,
     hooks = {"click", "ready"},
-    modules = {"define", "scripts"}
+    modules = {"hair", "scripts"}
   }
 end
 
