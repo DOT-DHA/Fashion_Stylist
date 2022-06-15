@@ -3,11 +3,9 @@
 
 overall_colors = {
     Jeans_Gold_Buttons = {     {215, 0, 0},     {215, 0, 0},     {245, 0, 0} }
-}
 
 Overalls = {
     Jeans_Gold_Buttons	= MOD_NAME .. "_overall_Jeans_Gold_Buttons"
-}
 
 Special_Overalls = {
     DOT  = MOD_NAME .. "_overall_DOT"
@@ -17,42 +15,40 @@ function define_overall_items()
 
     -- Define Overall Items
     for i, v in pairs(Overalls)do
-        api_log("test", i .. " " .. v)
         test = api_define_item({
-            id = "overall_".. string.lower(i),
-            name = i:gsub("_", " "),
+            id = "overall_".. i,
+            name = i:sub("_"," ") .. " Overalls",
             category = "Decoration",
             tooltip = "Right click to equip overalls.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/overall_items/overall_".. string.lower(i) ..".png")
-        api_log("define " .. i, test)
+        }, "sprites/overall_items/overall_".. i:lower() ..".png")
+        api_log("define " .. i, test)s
     end
 
     -- Define Special Overall Items
     for i, v in pairs(Special_Overalls)do
         test = api_define_item({
-            id = "overall_".. string.lower(i),
-            name = i .. " styled overalls",
+            id = "overall_".. i,
+            name = i:upper() .. " Styled Overalls",
             category = "Decoration",
             tooltip = "Right click to equip overalls.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/overall_items/overall_".. string.lower(i) ..".png")
+        }, "sprites/overall_items/overall_".. i:lower() ..".png")
         api_log("define " .. i, test)
     end
 
-    --define dye remover item
+    --define Base Overall Item
     test = api_define_item({
-      id = "overall_base",
-      name = "Base Overalls",
-      category = "Decoration",
-      tooltip = "Right click to equip base overalls.",
-      shop_buy = 15,
-      shop_sell = 5
-    }, "sprites/overall_items/overall_base.png")
-    api_log("define overall_base", test)
-
+        id = "hair_dye_remover",
+        name = "Dye Remover",
+        category = "Decoration",
+        tooltip = "Right click to remove dye from your hair.",
+        shop_buy = 15,
+        shop_sell = 5
+    }, "sprites/hair_items/hair_dye_remover.png")
+    api_log("define Dye Remover", test)
 
 end
 
