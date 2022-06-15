@@ -27,7 +27,7 @@ function define_items()
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/item/hair_dye_".. i ..".png")
+        }, "sprites/hair_items/hair_dye_".. i ..".png")
     end
 
     -- Define Special Hair Dye Items
@@ -39,7 +39,7 @@ function define_items()
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/item/hair_dye_".. i ..".png")
+        }, "sprites/hair_items/hair_dye_".. i ..".png")
     end
 
     --define dye remover item
@@ -50,7 +50,7 @@ function define_items()
       tooltip = "Right click to remove dye from your hair.",
       shop_buy = 15,
       shop_sell = 5
-    }, "sprites/item/hair_dye_remover.png")
+    }, "sprites/hair_items/hair_dye_remover.png")
 
 end
 
