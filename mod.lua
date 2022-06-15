@@ -65,6 +65,7 @@ function init()
 end
 
 function ready()
+
     player = api_get_player_instance()
     friend = api_get_menu_objects(nil, "npc51")
 
@@ -80,8 +81,6 @@ function ready()
         api_destroy_inst(friend[i]["id"])
       end
     end
-
-
 end
 
 
