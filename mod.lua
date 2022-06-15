@@ -46,17 +46,15 @@ function register()
   return {
     name = MOD_NAME,
     hooks = {"click", "ready"},
-    modules = {"define", "scripts"}
+    modules = {"hair", "overalls", "scripts"}
   }
 end
 
 function init()
 
     -- turn on devmode
-    --api_set_devmode(true)
-    
-    -- log to the console
-    
+    -- api_set_devmode(true)
+
     define_items()
     
     define_npc()
