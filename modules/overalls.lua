@@ -1,95 +1,87 @@
-Hair_Dye = {
-jeans_gold_button	= MOD_NAME .. "_overall_JGB",
-orange      = MOD_NAME .. "_hair_dye_orange",
-yellow      = MOD_NAME .. "_hair_dye_yellow",
-green       = MOD_NAME .. "_hair_dye_green",
-teal        = MOD_NAME .. "_hair_dye_teal",
-blue        = MOD_NAME .. "_hair_dye_blue",
-royal_blue  = MOD_NAME .. "_hair_dye_royal_blue",
-purple      = MOD_NAME .. "_hair_dye_purple",
-pink        = MOD_NAME .. "_hair_dye_pink"
+--overalls.lua
+--This file defines everything for the overall items and npc's
+
+overall_colors = {
+    Jeans_Gold_Buttons = {     {215, 0, 0},     {215, 0, 0},     {245, 0, 0} }
 }
 
-Special_Hair_Dye = {
-mushy       = MOD_NAME .. "_hair_dye_mushy",
-zoobot      = MOD_NAME .. "_hair_dye_zoobot",
-beenus      = MOD_NAME .. "_hair_dye_beenus"
+Overalls = {
+    Jeans_Gold_Buttons	= MOD_NAME .. "_overall_Jeans_Gold_Buttons"
 }
-function define_items() 
 
-    -- Define Hair Dye Items
-    for i, v in pairs(Hair_Dye)do
-        api_define_item({
-            id = "hair_dye_".. i,
-            name = string.upper(i) .. " Dye",
+Special_Overalls = {
+    DOT  = MOD_NAME .. "_overall_DOT"
+}
+
+function define_overall_items() 
+
+    -- Define Overall Items
+    for i, v in pairs(Overalls)do
+        api_log("test", i .. " " .. v)
+        test = api_define_item({
+            id = "overall_".. string.lower(i),
+            name = i:gsub("_", " "),
             category = "Decoration",
-            tooltip = "Right click to dye your hair.",
+            tooltip = "Right click to equip overalls.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/item/hair_dye_".. i ..".png")
+        }, "sprites/overall_items/overall_".. string.lower(i) ..".png")
+        api_log("define " .. i, test)
     end
 
-    -- Define Special Hair Dye Items
-    for i, v in pairs(Special_Hair_Dye)do
-        api_define_item({
-            id = "hair_dye_".. i,
-            name = string.upper(i) .. "'s Special Dye",
+    -- Define Special Overall Items
+    for i, v in pairs(Special_Overalls)do
+        test = api_define_item({
+            id = "overall_".. string.lower(i),
+            name = i .. " styled overalls",
             category = "Decoration",
-            tooltip = "Right click to dye your hair.",
+            tooltip = "Right click to equip overalls.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/item/hair_dye_".. i ..".png")
+        }, "sprites/overall_items/overall_".. string.lower(i) ..".png")
+        api_log("define " .. i, test)
     end
 
     --define dye remover item
-    api_define_item({
-      id = "hair_dye_remover",
-      name = "Dye Remover",
+    test = api_define_item({
+      id = "overall_base",
+      name = "Base Overalls",
       category = "Decoration",
-      tooltip = "Right click to remove dye from your hair.",
+      tooltip = "Right click to equip base overalls.",
       shop_buy = 15,
       shop_sell = 5
-    }, "sprites/item/hair_dye_remover.png")
+    }, "sprites/overall_items/overall_base.png")
+    api_log("define overall_base", test)
+
 
 end
 
 -- define a new npc
-function define_npc()
-
-  --set npc definition
-  npc_def = {
-    id = 51,
-    name = "DOT",
-    pronouns = "He/Him",
-    tooltip = "Need a new look?",
-    specials = {
-        MOD_NAME .. "_hair_dye_mushy",
-        MOD_NAME .. "_hair_dye_zoobot",
-        MOD_NAME .. "_hair_dye_beenus"
-    }, -- must be atleast 3
-    stock = {
-        MOD_NAME .. "_hair_dye_red",
-        MOD_NAME .. "_hair_dye_orange",
-        MOD_NAME .. "_hair_dye_yellow",
-        MOD_NAME .. "_hair_dye_green",
-        MOD_NAME .. "_hair_dye_teal",
-        MOD_NAME .. "_hair_dye_blue",
-        MOD_NAME .. "_hair_dye_royal_blue",
-        MOD_NAME .. "_hair_dye_purple",
-        MOD_NAME .. "_hair_dye_pink",
-        MOD_NAME .. "_hair_dye_remover"
-    }, -- max 10
-    greeting = "Howdy!",
-    dialogue = {
-      "Im starting a new life here in APICO",
-      "The weather is something to get used to, huh?"
-    },
-    walking = true,
-    shop = true
-  }
+function define_overall_npc()
 
   -- define npc
-  api_define_npc(npc_def,
+  npc_def = api_define_npc({
+        id = 52,
+        name = "Neshift",
+        pronouns = "She/Her",
+        tooltip = "Need a new look?",
+        specials = { 
+            Special_Overalls["DOT"], 
+            Special_Overalls["DOT"], 
+            Special_Overalls["DOT"]
+        }, -- must be at least 3
+        stock = { 
+           Overalls["Jeans_Gold_Buttons" ]
+           MOD_NAME .. "_overall_base"
+        }, -- max 10
+        greeting = "Time for a new fit?",
+        dialogue = { 
+            "Lets get you some new threads!", 
+            "I dont get all this beekeeping stuff" 
+        },
+        walking = true,
+        shop = true
+        },
     "sprites/overalls_npc/npc_standing.png",
     "sprites/overalls_npc/npc_standing_h.png",
     "sprites/overalls_npc/npc_walking.png",
@@ -100,5 +92,6 @@ function define_npc()
     "sprites/overalls_npc/npc_dialogue_menu.png",
     "sprites/overalls_npc/npc_shop_menu.png"
   )
-
+  
+  api_log("define overall npc", npc_def )
 end

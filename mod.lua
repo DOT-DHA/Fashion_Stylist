@@ -1,3 +1,6 @@
+--mod.lua
+--This is the main file to link everything together
+
 MOD_NAME = "fashion_stylist"
 
 --first is light then base then dark
@@ -25,41 +28,29 @@ base_colors =
     {  {149, 108, 97},   {129, 88, 84},   {112, 73, 74} }
 }
 
---first is base second is highlight
-hair_colors = {
-red         = {     {215, 0, 0},     {245, 0, 0} }, 
-orange      = {   {215, 107, 0},   {245, 122, 0} }, 
-yellow      = {   {215, 215, 0},   {245, 245, 0} }, 
-green       = {     {0, 215, 0},     {0, 245, 0} }, 
-teal        = {   {0, 215, 215},   {0, 245, 245} }, 
-blue        = {   {0, 107, 215},   {0, 122, 245} }, 
-royal_blue  = {     {0, 0, 215},     {0, 0, 245} }, 
-purple      = {   {107, 0, 215},   {122, 0, 245} }, 
-pink        = {   {215, 0, 107},   {245, 0, 122} },
-mushy       = {  {208, 126, 66},  {224, 157, 83} },
-zoobot      = {   {0, 225, 116},   {0, 255, 132} },
-beenus      = { {216, 143, 149}, {255, 186, 192} }
-}
-
-
 function register()
-  return {
-    name = MOD_NAME,
-    hooks = {"click", "ready"},
-    modules = {"hair", "overalls", "scripts"}
-  }
+    return {
+        name = MOD_NAME,
+        hooks = {"click", "ready"},
+        modules = {"hair", "overalls", "scripts"}
+    }
 end
 
 function init()
 
     -- turn on devmode
-    -- api_set_devmode(true)
+    api_set_devmode(true)
 
-    define_items()
+    define_hair_items()
     
-    define_npc()
+    define_hair_npc()
 
-    api_define_command("/rainbow","Command_Rainbow")
+    define_overall_items()
+    
+    define_overall_npc()
+
+    api_define_command("/dyes","Command_Dye")
+    api_define_command("/overalls","Command_Overall")
 
     return "Success"
 end
@@ -67,19 +58,26 @@ end
 function ready()
 
     player = api_get_player_instance()
-    friend = api_get_menu_objects(nil, "npc51")
-
     api_dp(player, "Hair-Dye", "none")
-    
-    if #friend == 0 then
-      api_create_obj("npc51", player["x"] + 16, player["y"] - 32)
-    end
 
-    -- remove duplicate DOTS
-    if #friend > 1 then
-      for i=2, #friend do
-        api_destroy_inst(friend[i]["id"])
-      end
+    npcs = {
+         hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"},
+         overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"}
+    }
+
+    
+    for i,v in pairs(npcs) do
+
+        if #v[1] == 0 then
+            PlayerPos = api_get_player_position()
+            api_create_obj(v[2], PlayerPos["x"] + 16, PlayerPos["y"] - 32)
+        end
+        -- remove duplicate DOTS
+        if #v[1] > 1 then
+          for i=2, #v[1] do
+            api_destroy_inst(v[1][i]["id"])
+          end
+        end
     end
 end
 
