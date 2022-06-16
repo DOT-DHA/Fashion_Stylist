@@ -73,15 +73,15 @@ function define_overall_npc()
             "I dont get all this beekeeping stuff" },
         walking = true,
         shop = true },
-    "sprites/overalls_npc/npc_standing.png",
-    "sprites/overalls_npc/npc_standing_h.png",
-    "sprites/overalls_npc/npc_walking.png",
-    "sprites/overalls_npc/npc_walking_h.png",
-    "sprites/overalls_npc/npc_head.png",
-    "sprites/overalls_npc/npc_bust.png",
-    "sprites/overalls_npc/npc_item.png",
-    "sprites/overalls_npc/npc_dialogue_menu.png",
-    "sprites/overalls_npc/npc_shop_menu.png"
+    "sprites/overall_npc/standing.png",
+    "sprites/overall_npc/standing_h.png",
+    "sprites/overall_npc/walking.png",
+    "sprites/overall_npc/walking_h.png",
+    "sprites/overall_npc/head.png",
+    "sprites/overall_npc/bust.png",
+    "sprites/overall_npc/item.png",
+    "sprites/overall_npc/dialogue_menu.png",
+    "sprites/overall_npc/shop_menu.png"
     )
   
     devlog("define overall npc", npc_def)

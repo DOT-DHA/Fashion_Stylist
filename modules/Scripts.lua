@@ -2,8 +2,8 @@
 --This file is mainly for defining commands and dev functions
 
 function DevMode(turnOnLogs, turnOnDevMode)
-    api_log("developer mode is on: ", turnOnDevMode)
-    api_log("logs are on: ", turnOnLogs)
+    api_log("DevMode", "developer mode is  " .. (turnOnDevMode and "on" or "off"))
+    api_log("DevMode", "logs are " .. (turnOnLogs and "on" or "off"))
     logs = turnOnLogs
     api_set_devmode(turnOnDevMode)
     api_define_command("/dyes","Command_Dye")
@@ -14,13 +14,13 @@ function Command_Dye(...)
 
   -- items, objects, and menu objects use your MOD_NAME in their oid
     for i,v in pairs(Hair_Dye)
-        do api_give_item(v, 10) 
-        devlog("command dye normal", i .. " " .. v)
+        do api_give_item(v[2], 10) 
+        devlog("command dye normal", i .. " " .. v[2])
     end
 
     for i,v in pairs(Special_Hair_Dye)do 
-        api_give_item(v, 10) 
-        devlog("command dye special", i .. " " .. v)
+        api_give_item(v[2], 10) 
+        devlog("command dye special", i .. " " .. v[2])
     end
 
     api_give_item(MOD_NAME .."_hair_dye_remover", 10)
@@ -53,5 +53,5 @@ function Command_Overall(...)
 end
 
 function devlog(title, text)
-    if logs then api_log(title,text) end
+    if logs then api_log("DevMode > " .. title,text) end
 end

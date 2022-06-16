@@ -29,18 +29,18 @@ base_colors = {
 function register()
     return { 
         name = MOD_NAME, 
-        hooks = {"click", "ready"}, 
+        hooks = {"click", "ready", "clock"},
         modules = {"hair", "overalls", "scripts"} 
     }
 end
 
-function init()
-    devlog("init", "start")
 
+function init()
     --Turn on devmode
     --function in scripts.lua
-
     DevMode(true, true)
+
+    devlog("init", "start")
 
     define_hair_items()
     
@@ -48,7 +48,7 @@ function init()
 
     define_overall_items()
     
-    define_overall_npc()
+    --define_overall_npc()
     
     devlog("init", "end")
 
@@ -56,29 +56,28 @@ function init()
 end
 
 function ready()
-    devlog("error?",api_get_menu_objects(nil,"npc1s"))
 
     player = api_get_player_instance()
     api_dp(player, "Hair-Dye", "none")
 
     npcs = {
-         hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"},
-         overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"}
+         hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--,
+         --overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} 
     }
-
+    
     
     for i,v in pairs(npcs) do
-
+    
         if #v[1] == 0 then
             PlayerPos = api_get_player_position()
             api_create_obj(v[2], PlayerPos["x"] + 16, PlayerPos["y"] - 32)
-        -- remove duplicate NPCs
+            api_log("", v)
+            api_log("", v[1])
+            api_log("", v[1][i])
+            api_log("", v[1][i]["id"])
         else
+            -- remove duplicate NPCs
             for i=2, #v[1] do
-                api_log("", v)
-                api_log("", v[1])
-                api_log("", v[1][i])
-                api_log("", v[1][i]["id"])
                 api_destroy_inst(v[1][i]["id"])
             end
         end
@@ -86,8 +85,50 @@ function ready()
     devlog("ready", "end")
 end
 
+
+function clock()
+    tick = not tick
+
+    if api_gp(api_gp(api_get_menu_objects(nil, "npc1")[1]["menu_id"], "shop"), "open") == true then
+        rotate_stock("npc1", ROTATING_STOCK)
+    end
+    
+    --devlog("clock", tick and "tick" or "tock")
+end
+
+function rotate_stock(npc_id, stock_table)
+  local npc_object = api_get_menu_objects(nil, npc_id)
+  local shop_id = api_gp(npc_object[1]["menu_id"], "shop")
+  if stock_table[1] > #stock_table-1 then
+    stock_table[1] = 1
+  end
+
+  if shop_id ~= nil then
+    local shop_slots = api_get_slots(shop_id)
+    local i_end = #stock_table[stock_table[1]+1]
+    if i_end > 10 then
+      i_end = 10
+    end
+    for i=1, i_end do
+      api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
+    end
+    if i_end < 10 then
+      for i=i_end+1, 10 do
+        api_slot_clear(shop_slots[i+1]["id"])
+      end
+    end
+
+    if stock_table[1]+1 == #stock_table then
+      stock_table[1] = 1
+    else
+      stock_table[1] = stock_table[1] + 1
+    end
+  end
+end
+
 function click(button, click_type)
     devlog("click", "start")
+    devlog(button, click_type)
 
     player = api_get_player_instance()
     mouse = api_get_mouse_inst()
