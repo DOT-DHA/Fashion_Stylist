@@ -18,21 +18,21 @@ hair_colors = {
 }
 
 Hair_Dye = {
-    red         = MOD_NAME .. "_hair_dye_red",
-    orange      = MOD_NAME .. "_hair_dye_orange",
-    yellow      = MOD_NAME .. "_hair_dye_yellow",
-    green       = MOD_NAME .. "_hair_dye_green",
-    teal        = MOD_NAME .. "_hair_dye_teal",
-    blue        = MOD_NAME .. "_hair_dye_blue",
-    royal_blue  = MOD_NAME .. "_hair_dye_royal_blue",
-    purple      = MOD_NAME .. "_hair_dye_purple",
-    pink        = MOD_NAME .. "_hair_dye_pink"
+    Red         = MOD_NAME .. "_hair_dye_red",
+    Orange      = MOD_NAME .. "_hair_dye_orange",
+    Yellow      = MOD_NAME .. "_hair_dye_yellow",
+    Green       = MOD_NAME .. "_hair_dye_green",
+    Teal        = MOD_NAME .. "_hair_dye_teal",
+    Blue        = MOD_NAME .. "_hair_dye_blue",
+    Royal_Blue  = MOD_NAME .. "_hair_dye_royal_blue",
+    Purple      = MOD_NAME .. "_hair_dye_purple",
+    Pink        = MOD_NAME .. "_hair_dye_pink"
 }
 
 Special_Hair_Dye = {
-    mushy       = MOD_NAME .. "_hair_dye_mushy",
-    zoobot      = MOD_NAME .. "_hair_dye_zoobot",
-    beenus      = MOD_NAME .. "_hair_dye_beenus"
+    Mushy       = MOD_NAME .. "_hair_dye_mushy",
+    ZooBot      = MOD_NAME .. "_hair_dye_zoobot",
+    Beenus      = MOD_NAME .. "_hair_dye_beenus"
 }
 
 function define_hair_items() 
@@ -40,26 +40,26 @@ function define_hair_items()
     -- Define Hair Dye Items
     for i, v in pairs(Hair_Dye)do
         test = api_define_item({
-            id = "hair_dye_".. i,
-            name = string.upper(i) .. " Dye",
+            id = "hair_dye_".. i:lower(),
+            name = i:sub("_"," ") .. " Dye",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/hair_items/hair_dye_".. i ..".png")
+        }, "sprites/hair_items/hair_dye_".. i:lower() ..".png")
         api_log("define " .. i, test)
     end
 
     -- Define Special Hair Dye Items
     for i, v in pairs(Special_Hair_Dye)do
         test = api_define_item({
-            id = "hair_dye_".. i,
-            name = string.upper(i) .. "'s Special Dye",
+            id = "hair_dye_".. i:lower(),
+            name = i:sub("_"," ") .. "'s Special Dye",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
             shop_sell = 5
-        }, "sprites/hair_items/hair_dye_".. i ..".png")
+        }, "sprites/hair_items/hair_dye_".. i:lower() ..".png")
         api_log("define " .. i, test)
     end
 

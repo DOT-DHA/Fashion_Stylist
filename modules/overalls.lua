@@ -16,14 +16,14 @@ function define_overall_items()
     -- Define Overall Items
     for i, v in pairs(Overalls)do
         test = api_define_item({
-            id = "overall_".. i,
+            id = "overall_".. i:lower(),
             name = i:sub("_"," ") .. " Overalls",
             category = "Decoration",
             tooltip = "Right click to equip overalls.",
             shop_buy = 15,
             shop_sell = 5
         }, "sprites/overall_items/overall_".. i:lower() ..".png")
-        api_log("define " .. i, test)s
+        api_log("define " .. i, test)
     end
 
     -- Define Special Overall Items
