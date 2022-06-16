@@ -4,8 +4,7 @@
 MOD_NAME = "fashion_stylist"
 
 --first is light then base then dark
-base_colors = 
-{
+base_colors = {
     {  {68, 100, 131},    {50, 74, 98},    {36, 55, 82} }, 
     {  {118, 91, 105},    {94, 73, 90},    {67, 55, 74} }, 
     { {149, 117, 126},  {118, 91, 105},    {94, 73, 90} }, 
@@ -29,17 +28,20 @@ base_colors =
 }
 
 function register()
-    return {
-        name = MOD_NAME,
-        hooks = {"click", "ready"},
-        modules = {"hair", "overalls", "scripts"}
+    api_log("register", "start")
+    return { 
+        name = MOD_NAME, 
+        hooks = {"click", "ready"}, 
+        modules = {"hair", "overalls", "scripts"} 
     }
 end
 
 function init()
+    api_log("init", "start")
 
-    -- turn on devmode
-    api_set_devmode(true)
+    --Turn on devmode
+    --function in scripts.lua
+    DevMode(true)
 
     define_hair_items()
     
@@ -48,9 +50,6 @@ function init()
     define_overall_items()
     
     define_overall_npc()
-
-    api_define_command("/dyes","Command_Dye")
-    api_define_command("/overalls","Command_Overall")
 
     return "Success"
 end
@@ -67,12 +66,16 @@ function ready()
 
     
     for i,v in pairs(npcs) do
+        api_log("", v)
+        api_log("", v[1])
+        api_log("", v[1][i])
+        api_log("", v[1][i]["id"])
 
         if #v[1] == 0 then
             PlayerPos = api_get_player_position()
             api_create_obj(v[2], PlayerPos["x"] + 16, PlayerPos["y"] - 32)
         end
-        -- remove duplicate DOTS
+        -- remove duplicate NPCs
         if #v[1] > 1 then
           for i=2, #v[1] do
             api_destroy_inst(v[1][i]["id"])
@@ -80,8 +83,6 @@ function ready()
         end
     end
 end
-
-
 
 function click(button, click_type)
     player = api_get_player_instance()

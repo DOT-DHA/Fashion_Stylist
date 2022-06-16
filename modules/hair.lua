@@ -36,6 +36,7 @@ Special_Hair_Dye = {
 }
 
 function define_hair_items() 
+    api_log("define_hair_items", "start")
 
     -- Define Hair Dye Items
     for i, v in pairs(Hair_Dye)do
