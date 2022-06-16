@@ -1,6 +1,8 @@
 --hair.lua
 --This file defines everything for the hair dye items and npc's
 
+hairIndex = 1
+
 --first is base second is highlight
 hair_colors = {
   Red        = {     {215, 0, 0},     {245, 0, 0} }, 

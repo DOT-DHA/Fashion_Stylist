@@ -1,6 +1,8 @@
 --overalls.lua
 --This file defines everything for the overall items and npc's
 
+overallIndex = 1
+
 overall_colors = {
     Jeans_Gold_Buttons = {     {215, 0, 0},     {215, 0, 0},     {245, 0, 0} } }
 

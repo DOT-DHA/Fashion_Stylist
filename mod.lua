@@ -29,7 +29,7 @@ base_colors = {
 function register()
     return { 
         name = MOD_NAME, 
-        hooks = {"click", "ready", "clock"},
+        hooks = {"click", "ready", "clock", "data"},
         modules = {"hair", "overalls", "scripts"} 
     }
 end
@@ -38,7 +38,7 @@ end
 function init()
     --Turn on devmode
     --function in scripts.lua
-    DevMode(true, true)
+    DevMode(false, true)
 
     devlog("init", "start")
 
@@ -55,75 +55,83 @@ function init()
     return "Success"
 end
 
+function data()
+
+
+end
+
 function ready()
 
-    player = api_get_player_instance()
+    local player = api_get_player_instance()
     api_dp(player, "Hair-Dye", "none")
 
-    npcs = {
-         hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--,
-         --overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} 
+    local npcs = {
+         local hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--,
+         --local overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} 
     }
     
     
     for i,v in pairs(npcs) do
     
         if #v[1] == 0 then
-            PlayerPos = api_get_player_position()
+            local PlayerPos = api_get_player_position()
             api_create_obj(v[2], PlayerPos["x"] + 16, PlayerPos["y"] - 32)
-            api_log("", v)
-            api_log("", v[1])
-            api_log("", v[1][i])
-            api_log("", v[1][i]["id"])
         else
             -- remove duplicate NPCs
             for i=2, #v[1] do
                 api_destroy_inst(v[1][i]["id"])
             end
         end
+
     end
     devlog("ready", "end")
 end
 
 
 function clock()
-    tick = not tick
 
-    if api_gp(api_gp(api_get_menu_objects(nil, "npc1")[1]["menu_id"], "shop"), "open") == true then
-        rotate_stock("npc1", ROTATING_STOCK)
+    local tick = not tick
+    local npc = api_get_menu_objects(nil, "npc51")
+    if npc then
+        local shopOpen = api_gp(api_gp(npc[1]["menu_id"], "shop"), "open")
+    end
+
+    if shopOpen then
+        rotate_stock("npc51", ROTATING_STOCK)
     end
     
     --devlog("clock", tick and "tick" or "tock")
 end
 
+
 function rotate_stock(npc_id, stock_table)
-  local npc_object = api_get_menu_objects(nil, npc_id)
-  local shop_id = api_gp(npc_object[1]["menu_id"], "shop")
-  if stock_table[1] > #stock_table-1 then
-    stock_table[1] = 1
-  end
-
-  if shop_id ~= nil then
-    local shop_slots = api_get_slots(shop_id)
-    local i_end = #stock_table[stock_table[1]+1]
-    if i_end > 10 then
-      i_end = 10
+    local npc_object = api_get_menu_objects(nil, npc_id)
+    local shop_id = api_gp(npc_object[1]["menu_id"], "shop")
+    if hairIndex > #Hair_Dye then
+        hairIndex = 1
     end
-    for i=1, i_end do
-      api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
-    end
-    if i_end < 10 then
-      for i=i_end+1, 10 do
-        api_slot_clear(shop_slots[i+1]["id"])
-      end
-    end
-
-    if stock_table[1]+1 == #stock_table then
-      stock_table[1] = 1
-    else
-      stock_table[1] = stock_table[1] + 1
-    end
-  end
+  --
+  --if shop_id ~= nil then
+  --  local shop_slots = api_get_slots(shop_id)
+  --  local i_end = #stock_table[stock_table[1]+1]
+  --  if i_end > 10 then
+  --    i_end = 10
+  --  end
+  --  for i=1, i_end do
+  --    api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
+  --  end
+  --  if i_end < 10 then
+  --    for i=i_end+1, 10 do
+  --      api_slot_clear(shop_slots[i+1]["id"])
+  --    end
+  --  end
+  --
+  --  if stock_table[1]+1 == #stock_table then
+  --    stock_table[1] = 1
+  --  else
+  --    stock_table[1] = stock_table[1] + 1
+  --  end
+  --end
 end
 
 function click(button, click_type)
