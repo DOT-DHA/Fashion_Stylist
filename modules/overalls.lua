@@ -32,7 +32,7 @@ function define_overall_items()
             id = "overall_".. i,
             name = i:upper() .. " Styled Overalls",
             category = "Decoration",
-            tooltip = "Right click to equip overalls.",
+            tooltip = "Right click to dye your hair.",
             shop_buy = 15,
             shop_sell = 5
         }, "sprites/overall_items/overall_".. i:lower() ..".png")
