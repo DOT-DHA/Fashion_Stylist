@@ -24,11 +24,9 @@ base_colors = {
     { {235, 204, 186}, {227, 185, 161}, {217, 163, 139} }, 
     { {227, 185, 161}, {217, 163, 139}, {194, 121, 103} }, 
     { {217, 163, 139}, {194, 131, 116},  {176, 109, 99} }, 
-    {  {149, 108, 97},   {129, 88, 84},   {112, 73, 74} }
-}
+    {  {149, 108, 97},   {129, 88, 84},   {112, 73, 74} } }
 
 function register()
-    api_log("register", "start")
     return { 
         name = MOD_NAME, 
         hooks = {"click", "ready"}, 
@@ -37,11 +35,12 @@ function register()
 end
 
 function init()
-    api_log("init", "start")
+    devlog("init", "start")
 
     --Turn on devmode
     --function in scripts.lua
-    DevMode(true)
+
+    DevMode(true, true)
 
     define_hair_items()
     
@@ -50,11 +49,14 @@ function init()
     define_overall_items()
     
     define_overall_npc()
+    
+    devlog("init", "end")
 
     return "Success"
 end
 
 function ready()
+    devlog("error?",api_get_menu_objects(nil,"npc1s"))
 
     player = api_get_player_instance()
     api_dp(player, "Hair-Dye", "none")
@@ -66,25 +68,27 @@ function ready()
 
     
     for i,v in pairs(npcs) do
-        api_log("", v)
-        api_log("", v[1])
-        api_log("", v[1][i])
-        api_log("", v[1][i]["id"])
 
         if #v[1] == 0 then
             PlayerPos = api_get_player_position()
             api_create_obj(v[2], PlayerPos["x"] + 16, PlayerPos["y"] - 32)
-        end
         -- remove duplicate NPCs
-        if #v[1] > 1 then
-          for i=2, #v[1] do
-            api_destroy_inst(v[1][i]["id"])
-          end
+        else
+            for i=2, #v[1] do
+                api_log("", v)
+                api_log("", v[1])
+                api_log("", v[1][i])
+                api_log("", v[1][i]["id"])
+                api_destroy_inst(v[1][i]["id"])
+            end
         end
     end
+    devlog("ready", "end")
 end
 
 function click(button, click_type)
+    devlog("click", "start")
+
     player = api_get_player_instance()
     mouse = api_get_mouse_inst()
     palette = api_gp(player, "pal")
@@ -190,4 +194,6 @@ function click(button, click_type)
             end
         end
     end
+
+    devlog("click", "end")
 end

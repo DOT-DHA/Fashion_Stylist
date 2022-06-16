@@ -14,8 +14,7 @@ hair_colors = {
     Pink        = {   {215, 0, 107},   {245, 0, 122} },
     Mushy       = {  {208, 126, 66},  {224, 157, 83} },
     ZooBot      = {   {0, 225, 116},   {0, 255, 132} },
-    Beenus      = { {216, 143, 149}, {255, 186, 192} }
-}
+    Beenus      = { {216, 143, 149}, {255, 186, 192} } }
 
 Hair_Dye = {
     Red         = MOD_NAME .. "_hair_dye_red",
@@ -26,54 +25,52 @@ Hair_Dye = {
     Blue        = MOD_NAME .. "_hair_dye_blue",
     Royal_Blue  = MOD_NAME .. "_hair_dye_royal_blue",
     Purple      = MOD_NAME .. "_hair_dye_purple",
-    Pink        = MOD_NAME .. "_hair_dye_pink"
-}
+    Pink        = MOD_NAME .. "_hair_dye_pink" }
 
 Special_Hair_Dye = {
     Mushy       = MOD_NAME .. "_hair_dye_mushy",
     ZooBot      = MOD_NAME .. "_hair_dye_zoobot",
-    Beenus      = MOD_NAME .. "_hair_dye_beenus"
-}
+    Beenus      = MOD_NAME .. "_hair_dye_beenus" }
 
 function define_hair_items() 
-    api_log("define_hair_items", "start")
+    devlog("define_hair_items", "start")
 
     -- Define Hair Dye Items
     for i, v in pairs(Hair_Dye)do
-        test = api_define_item({
+        item_def = api_define_item({
             id = "hair_dye_".. i:lower(),
             name = i:gsub("_"," ") .. " Dye",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
-            shop_sell = 5
-        }, "sprites/hair_items/hair_dye_".. i:lower() ..".png")
-        api_log("define " .. i, test)
+            shop_sell = 5 }, 
+        "sprites/hair_items/hair_dye_".. i:lower() ..".png")
+        devlog("define " .. i, item_def)
     end
 
     -- Define Special Hair Dye Items
     for i, v in pairs(Special_Hair_Dye)do
-        test = api_define_item({
+        item_def = api_define_item({
             id = "hair_dye_".. i:lower(),
             name = i:gsub("_"," ") .. "'s Special Dye",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
-            shop_sell = 5
-        }, "sprites/hair_items/hair_dye_".. i:lower() ..".png")
-        api_log("define " .. i, test)
+            shop_sell = 5 }, 
+        "sprites/hair_items/hair_dye_".. i:lower() ..".png")
+        devlog("define " .. i, item_def)
     end
 
     --define dye remover item
-    test = api_define_item({
+    item_def = api_define_item({
         id = "hair_dye_remover",
         name = "Dye Remover",
         category = "Decoration",
         tooltip = "Right click to remove dye from your hair.",
         shop_buy = 15,
-        shop_sell = 5
-    }, "sprites/hair_items/hair_dye_remover.png")
-    api_log("define Dye Remover", test)
+        shop_sell = 5 }, 
+    "sprites/hair_items/hair_dye_remover.png")
+    devlog("define Dye Remover", item_def)
 
 end
 
@@ -89,8 +86,7 @@ function define_hair_npc()
         specials = {
             Special_Hair_Dye["Mushy"],
             Special_Hair_Dye["Zoobot"],
-            Special_Hair_Dye["Beenus"]
-        }, -- must be atleast 3
+            Special_Hair_Dye["Beenus"] }, -- must be atleast 3
         stock = {
             Hair_Dye["Red"],
             Hair_Dye["Orange"],
@@ -101,16 +97,13 @@ function define_hair_npc()
             Hair_Dye["Royal_blue"],
             Hair_Dye["Purple"],
             Hair_Dye["Pink"],
-            MOD_NAME .. "_hair_dye_remover"
-        }, -- max 10
+            MOD_NAME .. "_hair_dye_remover" }, -- max 10
         greeting = "Howdy!",
         dialogue = {
           "Im starting a new life here in APICO",
-          "The weather is something to get used to, huh?"
-        },
+          "The weather is something to get used to, huh?" },
         walking = true,
-        shop = true
-    },
+        shop = true },
     "sprites/hair_npc/npc_standing.png",
     "sprites/hair_npc/npc_standing_h.png",
     "sprites/hair_npc/npc_walking.png",
@@ -121,5 +114,5 @@ function define_hair_npc()
     "sprites/hair_npc/npc_dialogue_menu.png",
     "sprites/hair_npc/npc_shop_menu.png")
 
-    api_log("define hair npc", npc_def )
+    devlog("define hair npc", npc_def )
 end
