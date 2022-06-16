@@ -3,12 +3,14 @@
 
 overall_colors = {
     Jeans_Gold_Buttons = {     {215, 0, 0},     {215, 0, 0},     {245, 0, 0} }
+}
 
 Overalls = {
     Jeans_Gold_Buttons	= MOD_NAME .. "_overall_Jeans_Gold_Buttons"
+}
 
 Special_Overalls = {
-    DOT  = MOD_NAME .. "_overall_DOT"
+    DOT  = MOD_NAME .. "_overall_dot"
 }
 
 function define_overall_items() 
@@ -16,21 +18,21 @@ function define_overall_items()
     -- Define Overall Items
     for i, v in pairs(Overalls)do
         test = api_define_item({
-            id = "overall_".. i,
-            name = i:sub("_"," ") .. " Overalls",
+            id = "overall_".. i:lower(),
+            name = i:gsub("_"," ") .. " Overalls",
             category = "Decoration",
             tooltip = "Right click to equip overalls.",
             shop_buy = 15,
             shop_sell = 5
         }, "sprites/overall_items/overall_".. i:lower() ..".png")
-        api_log("define " .. i, test)s
+        api_log("define " .. i, test)
     end
 
     -- Define Special Overall Items
     for i, v in pairs(Special_Overalls)do
         test = api_define_item({
-            id = "overall_".. i,
-            name = i:upper() .. " Styled Overalls",
+            id = "overall_".. i:lower(),
+            name = i:gsub("_"," ") .. " Styled Overalls",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
