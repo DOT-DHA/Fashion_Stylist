@@ -29,15 +29,15 @@ base_colors = {
 function register()
     return { 
         name = MOD_NAME, 
-        hooks = {"click", "ready", "clock"},
+        hooks = {"click", "ready", "clock"--[[, "data"]]},
         modules = {"hair", "overalls", "scripts"} 
     }
 end
 
 
 function init()
-    --Turn on devmode
-    --function in scripts.lua
+    --Turn on DevMode(logs T/F, Devmode T/F)
+    --Devmode function in scripts.lua
     DevMode(true, true)
 
     devlog("init", "start")
@@ -45,40 +45,40 @@ function init()
     define_hair_items()
     
     define_hair_npc()
-
+--[[
     define_overall_items()
     
-    --define_overall_npc()
-    
+    define_overall_npc()
+  ]]
     devlog("init", "end")
 
     return "Success"
 end
 
+--function data()
+--
+--end
+
 function ready()
 
-    player = api_get_player_instance()
+    local player = api_get_player_instance()
     api_dp(player, "Hair-Dye", "none")
 
-    npcs = {
-         hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--,
-         --overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} 
+    local npcs = {
+         local hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--[[,
+         local overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} ]]
     }
     
     
-    for i,v in pairs(npcs) do
+    for Key,Value in pairs(npcs) do
     
-        if #v[1] == 0 then
-            PlayerPos = api_get_player_position()
-            api_create_obj(v[2], PlayerPos["x"] + 16, PlayerPos["y"] - 32)
-            api_log("", v)
-            api_log("", v[1])
-            api_log("", v[1][i])
-            api_log("", v[1][i]["id"])
+        if #Value[1] == 0 then
+            local playerPos = api_get_player_position()
+            api_create_obj(Value[2], playerPos["x"] + 16, playerPos["y"] - 32)
         else
-            -- remove duplicate NPCs
-            for i=2, #v[1] do
-                api_destroy_inst(v[1][i]["id"])
+            --Remove duplicate NPCs
+            for i=2, #Value[1] do
+                api_destroy_inst(Value[1][i]["id"])
             end
         end
     end
@@ -87,117 +87,129 @@ end
 
 
 function clock()
-    tick = not tick
 
-    if api_gp(api_gp(api_get_menu_objects(nil, "npc1")[1]["menu_id"], "shop"), "open") == true then
-        rotate_stock("npc1", ROTATING_STOCK)
+    local tick = not tick
+    local npc = api_get_menu_objects(nil, "npc51")
+    if npc then local shopOpen = api_gp(api_gp(npc[1]["menu_id"], "shop"), "open") end
+end
+--[[
+    if shopOpen then
+        rotate_stock("npc51", ROTATING_STOCK)
     end
     
-    --devlog("clock", tick and "tick" or "tock")
-end
+    devlog("clock", tick and "tick" or "tock")
+  ]]
+
 
 function rotate_stock(npc_id, stock_table)
-  local npc_object = api_get_menu_objects(nil, npc_id)
-  local shop_id = api_gp(npc_object[1]["menu_id"], "shop")
-  if stock_table[1] > #stock_table-1 then
-    stock_table[1] = 1
-  end
+    local npc_object = api_get_menu_objects(nil, npc_id)
+    if npc_object then local shop_id = api_gp(npc_object[1]["menu_id"], "shop") end
 
-  if shop_id ~= nil then
-    local shop_slots = api_get_slots(shop_id)
-    local i_end = #stock_table[stock_table[1]+1]
-    if i_end > 10 then
-      i_end = 10
-    end
-    for i=1, i_end do
-      api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
-    end
-    if i_end < 10 then
-      for i=i_end+1, 10 do
-        api_slot_clear(shop_slots[i+1]["id"])
+    if hairIndex > #Hair_Dye then hairIndex = 1 end
+end
+--[[
+    if shop_id ~= nil then
+      local shop_slots = api_get_slots(shop_id)
+      local i_end = #stock_table[stock_table[1]+1]
+      if i_end > 10 then
+        i_end = 10
+      end
+      for i=1, i_end do
+        api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
+      end
+      if i_end < 10 then
+        for i=i_end+1, 10 do
+          api_slot_clear(shop_slots[i+1]["id"])
+        end
+      end
+    
+      if stock_table[1]+1 == #stock_table then
+        stock_table[1] = 1
+      else
+        stock_table[1] = stock_table[1] + 1
       end
     end
-
-    if stock_table[1]+1 == #stock_table then
-      stock_table[1] = 1
-    else
-      stock_table[1] = stock_table[1] + 1
-    end
-  end
-end
+  ]]
 
 function click(button, click_type)
     devlog("click", "start")
     devlog(button, click_type)
 
-    player = api_get_player_instance()
-    mouse = api_get_mouse_inst()
-    palette = api_gp(player, "pal")
-    basePalette = api_gp(player,"palette")
-    pSlots = api_get_slots(player)
-    done = false
+    local player = api_get_player_instance()
+    local mouse = api_get_mouse_inst()
+    local palette = api_gp(player, "pal")
+    local basePalette = api_gp(player,"palette")
+    local pSlots = api_get_slots(player)
+    local done = false
 
     if button == "RIGHT" and click_type == "PRESSED" then
-
-        highlighted = api_get_highlighted("slot")
+        local highlighted = api_get_highlighted("slot")
 
         if highlighted ~= nil then
+            local slot = api_get_slot_inst(highlighted)
 
-            slot = api_get_slot_inst(highlighted)
+            if mouse["item"] == MOD_NAME.."_hair_dye_remover" then
 
-            if api_gp(player, "Hair-Dye") == "none" then 
-                -- create a notification
-                api_set_notification("notice", "fashion_stylist_hair_dye_remover", "Dye Removed", "Cant remove any more dye")
+                if api_gp(player, "Hair-Dye") == "none" then 
 
-            elseif api_gp(player, "Hair-Dye") ~= "none" then 
+                    --Create a notification
+                    api_set_notification("notice", "fashion_stylist_hair_dye_remover", "Dye Removed", "Cant remove any more dye")
+                    done = true
 
-                if mouse["item"] == MOD_NAME.."_hair_dye_remover" then
+                elseif api_gp(player, "Hair-Dye") ~= "none" then 
 
+                    --Prevent halving a stack
                     if mouse["count"] > 0 then
                         api_sp(slot["id"], "count", slot["count"] + mouse["count"])
                         api_sp(mouse["id"], "count", 0)
                         api_sp(mouse["id"], "item", "")
                     end
-                    --Do something with your item here
+
+                    --Dying hair and removing 1 item
                     palette.h2 = base_colors[basePalette["h"]+1][1]
                     palette.h1 = base_colors[basePalette["h"]+1][2]
                     api_sp(player, "pal", palette)
-                    api_sp(player,"Hair-Dye", "none")
-                    api_use_item(slot["item"], 1)
+                    api_sp(player, "Hair-Dye", "none")
+                    api_slot_decr(slot["item"])
                     done = true
-                    -- create a notification
+
+                    --Create a notification
                     api_set_notification("notice", "fashion_stylist_hair_dye_remover", "Hair Dye Removed", "Your hair is now not dyed")
                 end
             end
 
             if not done then
 
-                for i, v in pairs(Hair_Dye) do
+                for Key, Value in pairs(Hair_Dye) do
 
-                    if api_gp(player, "Hair-Dye") == i then 
-                    
-                        -- create a notification
-                        api_set_notification("notice", v, "Already Dyed", "Cant dye any more")
+                    if mouse["item"] == Value[1] then
 
-                    elseif api_gp(player, "Hair-Dye") == "none" then
+                        if api_gp(player, "Hair-Dye") == Value[1] then 
+                        
+                            --Create a notification
+                            api_set_notification("notice", Value[2], "Already Dyed", "Cant dye any more")
+                            done = true
 
-                        if mouse["item"] == v then
+                        else 
 
+                            --Prevent halving a stack
                             if mouse["count"] > 0 then
                                 api_sp(slot["id"], "count", slot["count"] + mouse["count"])
                                 api_sp(slot["id"], "item", mouse["item"])
                                 api_sp(mouse["id"], "count", 0)
                                 api_sp(mouse["id"], "item", "")
                             end
-                            --Do something with your item here
-                            palette.h1 = hair_colors[i][1]
-                            palette.h2 = hair_colors[i][2]
+
+                            --Dying hair and removing 1 item
+                            palette.h1 = hair_colors[Value[1]][1]
+                            palette.h2 = hair_colors[Value[1]][2]
                             api_sp(player, "pal", palette)
-                            api_sp(player,"Hair-Dye", i)
-                            api_slot_decr(slot["id"])
+                            api_sp(player,"Hair-Dye", Value[1])
+                            api_slot_decr(slot["item"])
                             done = true
-                            -- create a notification
-                            api_set_notification("notice", v, "Hair Dyed", "Your hair is now " .. i)
+
+                            --Create a notification
+                            api_set_notification("notice", Value[2], "Hair Dyed", "Your hair is now " .. Value[1])
                         end
                     end
                 end
@@ -205,30 +217,33 @@ function click(button, click_type)
 
             if not done then
 
-                for i, v in pairs(Special_Hair_Dye) do
+                for Key, Value in pairs(Special_Hair_Dye) do
 
-                    if api_gp(player, "Hair-Dye") == i then 
-                    
-                        -- create a notification
-                        api_set_notification("notice", v, "Already Dyed", "Cant dye any more")
+                    if mouse["item"] == Value[2] then
 
-                    elseif api_gp(player, "Hair-Dye") ~= i then 
+                        if api_gp(player, "Hair-Dye") == Value[1] then 
+                        
+                            --Create a notification
+                            api_set_notification("notice", Value[2], "Already Dyed", "Cant dye any more")
 
-                        if mouse["item"] == v then
-
+                        else
+                        
+                            --Prevent halving a stack
                             if mouse["count"] > 0 then
                                 api_sp(slot["id"], "count", slot["count"] + mouse["count"])
                                 api_sp(mouse["id"], "count", 0)
                                 api_sp(mouse["id"], "item", "")
                             end
-                            --Do something with your item here
-                            palette.h1 = hair_colors[i][1]
-                            palette.h2 = hair_colors[i][2]
+
+                            --Dying hair and removing 1 item
+                            palette.h1 = hair_colors[Value[1]][1]
+                            palette.h2 = hair_colors[Value[1]][2]
                             api_sp(player, "pal", palette)
-                            api_sp(player,"Hair-Dye", i)
+                            api_sp(player,"Hair-Dye", Value[1])
                             api_slot_decr(slot["item"])
-                            -- create a notification
-                            api_set_notification("notice", v, "Hair Dyed", "Hair dyed the " .. string.upper(i) .. " Special")
+
+                            --Create a notification
+                            api_set_notification("notice", Value[2], "Hair Dyed", "Hair dyed the " .. Value[1] .. " Special")
                         end
                     end
                 end
