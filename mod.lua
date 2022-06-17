@@ -66,8 +66,7 @@ function ready()
 
     local npcs = {
          local hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--[[,
-         local overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} ]]
-    }
+         local overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} ]] }
     
     
     for Key,Value in pairs(npcs) do
@@ -83,6 +82,7 @@ function ready()
         end
 
     end
+
     devlog("ready", "end")
 end
 
