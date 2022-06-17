@@ -55,9 +55,9 @@ function init()
     return "Success"
 end
 
---function data()
---
---end
+function data()
+
+end
 
 function ready()
 
@@ -88,27 +88,25 @@ end
 
 
 function clock()
-
+--[[
     local tick = not tick
     local npc = api_get_menu_objects(nil, "npc51")
     if npc then local shopOpen = api_gp(api_gp(npc[1]["menu_id"], "shop"), "open") end
-end
---[[
+
     if shopOpen then
         rotate_stock("npc51", ROTATING_STOCK)
     end
     
     devlog("clock", tick and "tick" or "tock")
   ]]
-
+end
 
 function rotate_stock(npc_id, stock_table)
+--[[
     local npc_object = api_get_menu_objects(nil, npc_id)
     if npc_object then local shop_id = api_gp(npc_object[1]["menu_id"], "shop") end
 
     if hairIndex > #Hair_Dye then hairIndex = 1 end
-end
---[[
     if shop_id ~= nil then
       local shop_slots = api_get_slots(shop_id)
       local i_end = #stock_table[stock_table[1]+1]
@@ -131,6 +129,7 @@ end
       end
     end
   ]]
+end
 
 function click(button, click_type)
     devlog("click", "start")

@@ -1,8 +1,6 @@
 --overalls.lua
 --This file defines everything for the overall items and NPC's
 
---Refactor i,v
-
 overallIndex = 1
 
 overall_colors = {
@@ -23,12 +21,12 @@ function define_overall_items()
     --Defining normal overall items
     for Key, Value in pairs(Overalls) do
         local item_def = api_define_item({ 
-            id = "overall_".. Value[1]:lower(), 
-            name = Value[1]:gsub("_"," ") .. " Overalls", 
-            category = "Decoration", 
-            tooltip = "Right click to equip overalls.", 
-            shop_buy = 15, 
-            shop_sell = 5 }, 
+            local id        = "overall_".. Value[1]:lower(), 
+            local name      = Value[1]:gsub("_"," ") .. " Overalls", 
+            local category  = "Decoration", 
+            local tooltip   = "Right click to equip overalls.", 
+            local shop_buy  = 15, 
+            local shop_sell = 5 }, 
         "sprites/overall_items/overall_".. Value[1]:lower() ..".png")
 
         devlog("define " .. Value[1], item_def)
@@ -37,12 +35,12 @@ function define_overall_items()
     --Defining special overall items
     for Key, Value in pairs(Special_Overalls) do
         local item_def = api_define_item({
-            id = "overall_".. Value[1]:lower(),
-            name = Value[1]:gsub("_"," ") .. " Styled Overalls",
-            category = "Decoration",
-            tooltip = "Right click to dye your hair.",
-            shop_buy = 15,
-            shop_sell = 5}, 
+            local id        = "overall_".. Value[1]:lower(),
+            local name      = Value[1]:gsub("_"," ") .. " Styled Overalls",
+            local category  = "Decoration",
+            local tooltip   = "Right click to dye your hair.",
+            local shop_buy  = 15,
+            local shop_sell = 5}, 
         "sprites/overall_items/overall_".. Value[1]:lower() ..".png")
 
         devlog("define " .. Value[1], item_def)
@@ -50,12 +48,12 @@ function define_overall_items()
     
     --Defining base overall item
     local item_def = api_define_item({
-        id = "overall_base",
-        name = "Base Overalls",
-        category = "Decoration",
-        tooltip = "Right click to remove dye from your hair.",
-        shop_buy = 15,
-        shop_sell = 5 }, 
+        local id        = "overall_base",
+        local name      = "Base Overalls",
+        local category  = "Decoration",
+        local tooltip   = "Right click to remove dye from your hair.",
+        local shop_buy  = 15,
+        local shop_sell = 5 }, 
     "sprites/overall_items/overall_base.png")
 
     devlog("define overall_base", item_def)
@@ -66,33 +64,33 @@ function define_overall_npc()
 
     --NPC definition
     local NPC_def = api_define_npc({
-        id = 52,
-        name = "David",
-        pronouns = "He/Him",
-        tooltip = "Need a new look?",
+        local id       = 52,
+        local name     = "David",
+        local pronouns = "He/Him",
+        local tooltip  = "Need a new look?",
         --Must be a table of at least 3 items
-        specials = { 
-            Special_Overalls["DOT"], 
-            Special_Overalls["DOT"], 
-            Special_Overalls["DOT"] },
+        local specials = { 
+            Special_Overalls[1][2], 
+            Special_Overalls[1][2], 
+            Special_Overalls[1][2] },
         --Max table size of 10
-        stock = { 
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
-           Overalls["Jeans_Gold_Buttons"],
+        local stock    = { 
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
+           Overalls[1][2],
            MOD_NAME .. "_overall_base" }, 
-        greeting = "Time for a new fit?",
-        dialogue = { 
+        local greeting = "Time for a new fit?",
+        local dialogue = { 
             "Lets get you some new threads!", 
             "I dont get all this beekeeping stuff" },
-        walking = true,
-        shop = true },
+        local walking  = true,
+        local shop     = true },
     "sprites/overall_npc/standing.png",
     "sprites/overall_npc/standing_h.png",
     "sprites/overall_npc/walking.png",

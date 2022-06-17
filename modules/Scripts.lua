@@ -13,45 +13,50 @@ function DevMode(turnOnLogs, turnOnDevMode)
 end
 
 function Command_Dye(...)
+    --Items, objects, and menu objects use your MOD_NAME in their oid
+    --Flowers, bees, walls and NPCs DO NOT use your MOD_NAME in their oid
 
-  --Items, objects, and menu objects use your MOD_NAME in their oid
-    for i,v in pairs(Hair_Dye) do
-        api_give_item(v[2], 10) 
-        devlog("command dye normal", i .. " " .. v[2])
+    local amount = arg[1] and arg[1] or 10
+
+    for Key, Value in pairs(Hair_Dye) do
+        api_give_item(Value[2], amount) 
+        devlog("command dye normal", Value[1] .. " " .. amount])
     end
 
-    for i,v in pairs(Special_Hair_Dye ) do 
-        api_give_item(v[2], 10) 
-        devlog("command dye special", i .. " " .. v[2])
+    for Key, Vale in pairs(Special_Hair_Dye ) do 
+        api_give_item(Value[2], amount) 
+        devlog("command dye special", Value[1] .. " " .. amount)
     end
 
-    api_give_item(MOD_NAME .."_hair_dye_remover", 10)
-    devlog("command dye remover", Remover .. " " .. MOD_NAME .."_hair_dye_remover")
+    api_give_item(MOD_NAME .."_hair_dye_remover", amount)
+    devlog("command dye remover", "Remover " amount)
 
-    --Flowers, bees, walls and NPCs DO NOT use your MOD_NAME in their oid!
     api_give_item("npc51", 1)
+    devlog("command overall npc", "npc51 1")
 
 end
 
 function Command_Overall(...)
-
     --Items, objects, and menu objects use your MOD_NAME in their oid
-    for i,v in pairs(Overalls) do 
-        api_give_item(v, 10) 
-        devlog("command overall normal", i .. " " .. v)
+    --Flowers, bees, walls and NPCs DO NOT use your MOD_NAME in their oid
+  
+    local amount = arg[1] and arg[1] or 10
+
+    for Key, Value in pairs(Overalls) do 
+        api_give_item(Value[2], amount)
+        devlog("command overall normal", Value[1] .. " " .. amount])
     end
 
-    for i,v in pairs(Special_Overalls) do 
-        api_give_item(v, 10) 
-        devlog("command overall special", i .. " " .. v)
+    for Key, Value in pairs(Special_Overalls) do 
+        api_give_item(Value[2], amount)
+        devlog("command overall special", Value[1] .. " " .. amount])
     end
 
     api_give_item(MOD_NAME .."_overall_base", 10)
-    devlog("command overall base", "Base " .. MOD_NAME .."_overall_base")
+    devlog("command overall base", "Base " amount)
 
-    --Flowers, bees, walls and NPCs DO NOT use your MOD_NAME in their oid!
     api_give_item("npc52", 1)
-    devlog("command overall npc", "Base " .. MOD_NAME .."_overall_base")
+    devlog("command overall npc", "npc52 1")
 
 end
 
