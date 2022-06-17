@@ -5,17 +5,15 @@
 
 overallIndex = 1
 
-overallIndex = 1
-
 overall_colors = {
     Jeans_Gold_Buttons  = {  {212, 175, 55},  {66, 111, 128},   {51, 90, 112} },
     DOT                 = {   {154, 83, 54},   {42, 67, 122},     {9, 14, 26} } }
 
 Overalls = {
-    Jeans_Gold_Buttons	= MOD_NAME .. "_overall_jeans_gold_buttons" }
+    {"Jeans_Gold_Buttons",  MOD_NAME .. "_overall_jeans_gold_buttons"} }
 
 Special_Overalls = {
-    DOT  = MOD_NAME .. "_overall_dot" }
+    {"DOT",                 MOD_NAME .. "_overall_dot"} }
 
 
 --Defining all overall items
@@ -23,31 +21,31 @@ function define_overall_items()
     devlog("define_overall_items", "start")
 
     --Defining normal overall items
-    for i, v in pairs(Overalls) do
+    for Key, Value in pairs(Overalls) do
         local item_def = api_define_item({ 
-            id = "overall_".. i:lower(), 
-            name = i:gsub("_"," ") .. " Overalls", 
+            id = "overall_".. Value[1]:lower(), 
+            name = Value[1]:gsub("_"," ") .. " Overalls", 
             category = "Decoration", 
             tooltip = "Right click to equip overalls.", 
             shop_buy = 15, 
             shop_sell = 5 }, 
-        "sprites/overall_items/overall_".. i:lower() ..".png")
+        "sprites/overall_items/overall_".. Value[1]:lower() ..".png")
 
-        devlog("define " .. i, item_def)
+        devlog("define " .. Value[1], item_def)
     end
     
     --Defining special overall items
-    for i, v in pairs(Special_Overalls) do
+    for Key, Value in pairs(Special_Overalls) do
         local item_def = api_define_item({
-            id = "overall_".. i:lower(),
-            name = i:gsub("_"," ") .. " Styled Overalls",
+            id = "overall_".. Value[1]:lower(),
+            name = Value[1]:gsub("_"," ") .. " Styled Overalls",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
             shop_buy = 15,
             shop_sell = 5}, 
-        "sprites/overall_items/overall_".. i:lower() ..".png")
+        "sprites/overall_items/overall_".. Value[1]:lower() ..".png")
 
-        devlog("define " .. i, item_def)
+        devlog("define " .. Value[1], item_def)
     end
     
     --Defining base overall item
