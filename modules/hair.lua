@@ -3,6 +3,8 @@
 
 hairIndex = 1
 
+hairIndex = 1
+
 --first is base second is highlight
 hair_colors = {
   Red        = {     {215, 0, 0},     {245, 0, 0} }, 

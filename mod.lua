@@ -81,6 +81,7 @@ function ready()
                 api_destroy_inst(Value[1][i]["id"])
             end
         end
+
     end
     devlog("ready", "end")
 end
