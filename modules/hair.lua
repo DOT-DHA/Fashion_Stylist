@@ -57,12 +57,12 @@ function define_hair_items()
 
     --Defining workbench for crafting
     local workbench_def = api_define_workbench(
-        label = "Fashion Stylist", {
-            t1 = "Hair Dye",
-            t2 = "Overalls(Coming Soon)",
-            t3 = "(Unknown)",
-            t3 = "(Unknown)",
-            t3 = "(Unknown)" } )
+        "Fashion Stylist", { 
+            t1 = "Hair Dye", 
+            t2 = "Overalls(Coming Soon)", 
+            t3 = "(Unknown)", 
+            t4 = "(Unknown)", 
+            t5 = "(Unknown)" } )
 
     devlog("Workbench", workbench_def)
 
@@ -81,7 +81,7 @@ function define_hair_items()
     end
 
     --Defining special hair items
-    for Key, Value in pairs(Special_Hair_Dye)do
+    for Key, Value in pairs(Special_Hair_Dye) do
         local item_def = api_define_item({
             id = "hair_dye_".. Value[1]:lower(),
             name = Value[1]:gsub("_"," ") .. "'s Special Dye",
@@ -108,12 +108,12 @@ function define_hair_items()
 
     --Defining all dye recipies
     for Key, Value in pairs(hair_recipes) do
-        local res_def = api_define_recipe(
-            local tab    = Value[1],
-            local item   = Value[2],
-            local recipe = Value[3] )
+        local res_def = api_define_recipe( 
+            Value[1],
+            Value[2],
+            Value[3] )
 
-        devlog("Dye recipe" .. v[2], res_def)
+        devlog("Dye recipe" .. Value[2], res_def)
     end
 end
 

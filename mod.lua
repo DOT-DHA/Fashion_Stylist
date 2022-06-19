@@ -27,17 +27,18 @@ base_colors = {
     {  {149, 108, 97},   {129, 88, 84},   {112, 73, 74} } }
 
 function register()
-    return { 
-        name = MOD_NAME, 
-        hooks = {"click", "ready", "clock"--[[, "data"]]},
-        modules = {"hair", "overalls", "scripts"} 
-    }
+    local name = MOD_NAME
+    local hooks = {"click", "ready"}
+    local modules = {"hair", "overalls", "scripts"}
+
+    return {name, hooks, modules}
 end
 
 
 function init()
     --Turn on DevMode(logs T/F, Devmode T/F)
     --Devmode function in scripts.lua
+    
     DevMode(true, true)
 
     devlog("init", "start")
@@ -45,31 +46,28 @@ function init()
     define_hair_items()
     
     define_hair_npc()
---[[
+
     define_overall_items()
     
     define_overall_npc()
-  ]]
+
     devlog("init", "end")
+    
 
     return "Success"
 end
 
-function data()
-
-end
-
 function ready()
-
+    
     local player = api_get_player_instance()
     api_dp(player, "Hair-Dye", "none")
 
     local npcs = {
-         local hair_npc      = {api_get_menu_objects(nil, "npc51"), "npc51"}--[[,
-         local overall_npc   = {api_get_menu_objects(nil, "npc52"), "npc52"} ]] }
+        {api_get_menu_objects(nil, "npc51"), "npc51"},
+        {api_get_menu_objects(nil, "npc52"), "npc52"} }
     
     
-    for Key,Value in pairs(npcs) do
+    for Key, Value in pairs(npcs) do
     
         if #Value[1] == 0 then
             local playerPos = api_get_player_position()
@@ -80,7 +78,6 @@ function ready()
                 api_destroy_inst(Value[1][i]["id"])
             end
         end
-
     end
 
     devlog("ready", "end")
@@ -88,23 +85,25 @@ end
 
 
 function clock()
---[[
+
     local tick = not tick
     local npc = api_get_menu_objects(nil, "npc51")
-    if npc then local shopOpen = api_gp(api_gp(npc[1]["menu_id"], "shop"), "open") end
+    local shopOpen
+
+    if npc then shopOpen = api_gp(api_gp(npc[1]["menu_id"], "shop"), "open") end
 
     if shopOpen then
-        rotate_stock("npc51", ROTATING_STOCK)
+        rotate_stock("npc51", {})
     end
     
     devlog("clock", tick and "tick" or "tock")
-  ]]
 end
 
 function rotate_stock(npc_id, stock_table)
---[[
     local npc_object = api_get_menu_objects(nil, npc_id)
     if npc_object then local shop_id = api_gp(npc_object[1]["menu_id"], "shop") end
+    
+--[[
 
     if hairIndex > #Hair_Dye then hairIndex = 1 end
     if shop_id ~= nil then

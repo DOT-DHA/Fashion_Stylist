@@ -21,12 +21,12 @@ function define_overall_items()
     --Defining normal overall items
     for Key, Value in pairs(Overalls) do
         local item_def = api_define_item({ 
-            local id        = "overall_".. Value[1]:lower(), 
-            local name      = Value[1]:gsub("_"," ") .. " Overalls", 
-            local category  = "Decoration", 
-            local tooltip   = "Right click to equip overalls.", 
-            local shop_buy  = 15, 
-            local shop_sell = 5 }, 
+            id        = "overall_".. Value[1]:lower(), 
+            name      = Value[1]:gsub("_"," ") .. " Overalls", 
+            category  = "Decoration", 
+            tooltip   = "Right click to equip overalls.", 
+            shop_buy  = 15, 
+            shop_sell = 5 }, 
         "sprites/overall_items/overall_".. Value[1]:lower() ..".png")
 
         devlog("define " .. Value[1], item_def)
@@ -35,12 +35,12 @@ function define_overall_items()
     --Defining special overall items
     for Key, Value in pairs(Special_Overalls) do
         local item_def = api_define_item({
-            local id        = "overall_".. Value[1]:lower(),
-            local name      = Value[1]:gsub("_"," ") .. " Styled Overalls",
-            local category  = "Decoration",
-            local tooltip   = "Right click to dye your hair.",
-            local shop_buy  = 15,
-            local shop_sell = 5}, 
+            id        = "overall_".. Value[1]:lower(),
+            name      = Value[1]:gsub("_"," ") .. " Styled Overalls",
+            category  = "Decoration",
+            tooltip   = "Right click to dye your hair.",
+            shop_buy  = 15,
+            shop_sell = 5}, 
         "sprites/overall_items/overall_".. Value[1]:lower() ..".png")
 
         devlog("define " .. Value[1], item_def)
@@ -48,12 +48,12 @@ function define_overall_items()
     
     --Defining base overall item
     local item_def = api_define_item({
-        local id        = "overall_base",
-        local name      = "Base Overalls",
-        local category  = "Decoration",
-        local tooltip   = "Right click to remove dye from your hair.",
-        local shop_buy  = 15,
-        local shop_sell = 5 }, 
+        id        = "overall_base",
+        name      = "Base Overalls",
+        category  = "Decoration",
+        tooltip   = "Right click to remove dye from your hair.",
+        shop_buy  = 15,
+        shop_sell = 5 }, 
     "sprites/overall_items/overall_base.png")
 
     devlog("define overall_base", item_def)
