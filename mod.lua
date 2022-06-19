@@ -86,48 +86,49 @@ end
 function clock()
 
     local tick
-    tick = not tick
+    tick = tick + 1
     local npc = api_get_menu_objects(nil, "npc51")
     local shopOpen
 
     if npc then shopOpen = api_get_property(api_get_property(npc[1]["menu_id"], "shop"), "open") end
 
     if shopOpen then
-        rotate_stock("npc51", {})
+        rotate_stock("npc51", {"log"})
     end
 
-    devlog("clock", tick and "tick" or "tock")
+    devlog("clock", tick)
 end
 
 function rotate_stock(npc_id, stock_table)
+
     local npc_object = api_get_menu_objects(nil, npc_id)
-    if npc_object then local shop_id = api_get_property(npc_object[1]["menu_id"], "shop") end
 
---[[
+    if npc_object then
 
-    if hairIndex > #Hair_Dye then hairIndex = 1 end
-    if shop_id ~= nil then
-      local shop_slots = api_get_slots(shop_id)
-      local i_end = #stock_table[stock_table[1]+1]
-      if i_end > 10 then
-        i_end = 10
-      end
-      for i=1, i_end do
-        api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
-      end
-      if i_end < 10 then
-        for i=i_end+1, 10 do
-          api_slot_clear(shop_slots[i+1]["id"])
+        local shop_id = api_get_property(npc_object[1]["menu_id"], "shop")
+
+        if shop_id ~= nil then
+
+          local shop_slots = api_get_slots(shop_id)
+          local i_end = #stock_table
+          i_end = i_end - (i_end//10)*10
+
+          for i=1, i_end do
+            api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
+          end
+          if i_end < 10 then
+            for i=i_end+1, 10 do
+              api_slot_clear(shop_slots[i+1]["id"])
+            end
+          end
+
+          if stock_table[1]+1 == #stock_table then
+            stock_table[1] = 1
+          else
+            stock_table[1] = stock_table[1] + 1
+          end
         end
-      end
-
-      if stock_table[1]+1 == #stock_table then
-        stock_table[1] = 1
-      else
-        stock_table[1] = stock_table[1] + 1
-      end
     end
-  ]]
 end
 
 function click(button, click_type)
@@ -159,16 +160,15 @@ function click(button, click_type)
 
                     --Prevent halving a stack
                     if mouse["count"] > 0 then
-                        api_sp(slot["id"], "count", slot["count"] + mouse["count"])
-                        api_sp(mouse["id"], "count", 0)
-                        api_sp(mouse["id"], "item", "")
+                        api_set_property(slot["id"], "count", slot["count"] + mouse["count"])
+                        api_slot_clear(mouse["id"])
                     end
 
                     --Dying hair and removing 1 item
                     palette.h2 = base_colors[basePalette["h"]+1][1]
                     palette.h1 = base_colors[basePalette["h"]+1][2]
-                    api_sp(player, "pal", palette)
-                    api_sp(player, "Hair-Dye", "none")
+                    api_set_property(player, "pal", palette)
+                    api_set_property(player, "Hair-Dye", "none")
                     api_slot_decr(slot["item"])
                     done = true
 
@@ -193,17 +193,17 @@ function click(button, click_type)
 
                             --Prevent halving a stack
                             if mouse["count"] > 0 then
-                                api_sp(slot["id"], "count", slot["count"] + mouse["count"])
-                                api_sp(slot["id"], "item", mouse["item"])
-                                api_sp(mouse["id"], "count", 0)
-                                api_sp(mouse["id"], "item", "")
+                                api_set_property(slot["id"], "count", slot["count"] + mouse["count"])
+                                api_set_property(slot["id"], "item", mouse["item"])
+                                api_set_property(mouse["id"], "count", 0)
+                                api_set_property(mouse["id"], "item", "")
                             end
 
                             --Dying hair and removing 1 item
                             palette.h1 = hair_colors[Value[1]][1]
                             palette.h2 = hair_colors[Value[1]][2]
-                            api_sp(player, "pal", palette)
-                            api_sp(player,"Hair-Dye", Value[1])
+                            api_set_property(player, "pal", palette)
+                            api_set_property(player,"Hair-Dye", Value[1])
                             api_slot_decr(slot["item"])
                             done = true
 
@@ -229,16 +229,16 @@ function click(button, click_type)
 
                             --Prevent halving a stack
                             if mouse["count"] > 0 then
-                                api_sp(slot["id"], "count", slot["count"] + mouse["count"])
-                                api_sp(mouse["id"], "count", 0)
-                                api_sp(mouse["id"], "item", "")
+                                api_set_property(slot["id"], "count", slot["count"] + mouse["count"])
+                                api_set_property(mouse["id"], "count", 0)
+                                api_set_property(mouse["id"], "item", "")
                             end
 
                             --Dying hair and removing 1 item
                             palette.h1 = hair_colors[Value[1]][1]
                             palette.h2 = hair_colors[Value[1]][2]
-                            api_sp(player, "pal", palette)
-                            api_sp(player,"Hair-Dye", Value[1])
+                            api_set_property(player, "pal", palette)
+                            api_set_property(player,"Hair-Dye", Value[1])
                             api_slot_decr(slot["item"])
 
                             --Create a notification

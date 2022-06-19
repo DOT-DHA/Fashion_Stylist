@@ -36,6 +36,9 @@
         "define_overall_items",
         "define_overall_npc",
         "api_define_property",
-        "api_get_property"
+        "api_get_property",
+        "api_set_property",
+        "api_slot_set",
+        "api_slot_clear"
     ]
 }
