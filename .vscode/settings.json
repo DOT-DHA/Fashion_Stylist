@@ -5,6 +5,27 @@
         "api_get_menu_objects",
         "api_get_player_position",
         "api_create_obj",
-        "api_destroy_inst"
+        "api_destroy_inst",
+        "api_gp",
+        "api_get_mouse_inst",
+        "api_get_slots",
+        "api_get_highlighted",
+        "api_get_slot_inst",
+        "api_set_notification",
+        "api_sp",
+        "api_slot_decr",
+        "register",
+        "init",
+        "ready",
+        "clock",
+        "rotate_stock",
+        "click",
+        "api_define_workbench",
+        "api_define_item",
+        "api_define_recipe",
+        "api_define_npc",
+        "hairIndex",
+        "hair_colors",
+        "hair_recipes"
     ]
 }
