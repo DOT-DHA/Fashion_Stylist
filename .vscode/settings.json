@@ -1,18 +1,15 @@
 {
     "Lua.diagnostics.globals": [
         "api_get_player_instance",
-        "api_dp",
         "api_get_menu_objects",
         "api_get_player_position",
         "api_create_obj",
         "api_destroy_inst",
-        "api_gp",
         "api_get_mouse_inst",
         "api_get_slots",
         "api_get_highlighted",
         "api_get_slot_inst",
         "api_set_notification",
-        "api_sp",
         "api_slot_decr",
         "register",
         "init",
@@ -37,6 +34,8 @@
         "overallIndex",
         "overall_colors",
         "define_overall_items",
-        "define_overall_npc"
+        "define_overall_npc",
+        "api_define_property",
+        "api_get_property"
     ]
 }
