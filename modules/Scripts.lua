@@ -1,13 +1,13 @@
 --scripts.lua
 --This file is mainly for defining commands and dev functions
 
-logs = false
+LOGS = false
 
 function DevMode(turnOnLogs, turnOnDevMode)
-    logs = turnOnLogs
+    LOGS = turnOnLogs
     api_set_devmode(turnOnDevMode)
     api_log("DevMode", "developer mode is  " .. (turnOnDevMode and "on" or "off"))
-    api_log("DevMode", "logs are " .. (turnOnLogs and "on" or "off"))
+    api_log("DevMode", "LOGS are " .. (turnOnLogs and "on" or "off"))
     api_define_command("/dyes","Command_Dye")
     api_define_command("/overalls","Command_Overall")
 end
@@ -23,13 +23,13 @@ function Command_Dye(...)
         devlog("command dye normal", Value[1] .. " " .. amount)
     end
 
-    for Key, Vale in pairs(Special_Hair_Dye ) do
+    for Key, Value in pairs(Special_Hair_Dye ) do
         api_give_item(Value[2], amount)
         devlog("command dye special", Value[1] .. " " .. amount)
     end
 
     api_give_item(MOD_NAME .."_hair_dye_remover", amount)
-    devlog("command dye remover", "Remover ", amount)
+    devlog("command dye remover", "Remover " .. amount)
 
     api_give_item("npc51", 1)
     devlog("command overall npc", "npc51 1")
@@ -53,7 +53,7 @@ function Command_Overall(...)
     end
 
     api_give_item(MOD_NAME .."_overall_base", 10)
-    devlog("command overall base", "Base ", amount)
+    devlog("command overall base", "Base " .. amount)
 
     api_give_item("npc52", 1)
     devlog("command overall npc", "npc52 1")
@@ -61,6 +61,6 @@ function Command_Overall(...)
 end
 
 function devlog(title, text)
-    --Only outputs logs if logs are turn on
-    if logs then api_log("DevMode > " .. title,text) end
+    --Only outputs LOGS if LOGS are turn on
+    if LOGS then api_log("DevMode > " .. title,text) end
 end

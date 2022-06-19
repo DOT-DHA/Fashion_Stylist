@@ -26,6 +26,17 @@
         "api_define_npc",
         "hairIndex",
         "hair_colors",
-        "hair_recipes"
+        "hair_recipes",
+        "api_set_devmode",
+        "api_log",
+        "api_define_command",
+        "api_give_item",
+        "devlog",
+        "define_hair_items",
+        "define_hair_npc",
+        "overallIndex",
+        "overall_colors",
+        "define_overall_items",
+        "define_overall_npc"
     ]
 }

@@ -4,7 +4,7 @@
 MOD_NAME = "fashion_stylist"
 
 --first is light then base then dark
-base_colors = {
+local base_colors = {
     {  {68, 100, 131},    {50, 74, 98},    {36, 55, 82} }, 
     {  {118, 91, 105},    {94, 73, 90},    {67, 55, 74} }, 
     { {149, 117, 126},  {118, 91, 105},    {94, 73, 90} }, 
