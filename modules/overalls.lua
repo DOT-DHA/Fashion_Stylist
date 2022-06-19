@@ -64,17 +64,17 @@ function define_overall_npc()
 
     --NPC definition
     local NPC_def = api_define_npc({
-        local id       = 52,
-        local name     = "David",
-        local pronouns = "He/Him",
-        local tooltip  = "Need a new look?",
+            id       = 52,
+            name     = "David",
+            pronouns = "He/Him",
+            tooltip  = "Need a new look?",
         --Must be a table of at least 3 items
-        local specials = { 
+        specials = { 
             Special_Overalls[1][2], 
             Special_Overalls[1][2], 
             Special_Overalls[1][2] },
         --Max table size of 10
-        local stock    = { 
+        stock    = { 
            Overalls[1][2],
            Overalls[1][2],
            Overalls[1][2],
@@ -85,12 +85,12 @@ function define_overall_npc()
            Overalls[1][2],
            Overalls[1][2],
            MOD_NAME .. "_overall_base" }, 
-        local greeting = "Time for a new fit?",
-        local dialogue = { 
+        greeting = "Time for a new fit?",
+        dialogue = { 
             "Lets get you some new threads!", 
             "I dont get all this beekeeping stuff" },
-        local walking  = true,
-        local shop     = true },
+        walking  = true,
+        shop     = true },
     "sprites/overall_npc/standing.png",
     "sprites/overall_npc/standing_h.png",
     "sprites/overall_npc/walking.png",

@@ -1,0 +1,10 @@
+{
+    "Lua.diagnostics.globals": [
+        "api_get_player_instance",
+        "api_dp",
+        "api_get_menu_objects",
+        "api_get_player_position",
+        "api_create_obj",
+        "api_destroy_inst"
+    ]
+}

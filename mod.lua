@@ -86,7 +86,8 @@ end
 
 function clock()
 
-    local tick = not tick
+    local tick
+    tick = not tick
     local npc = api_get_menu_objects(nil, "npc51")
     local shopOpen
 
