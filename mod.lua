@@ -39,7 +39,7 @@ function init()
     --Turn on DevMode(logs T/F, Devmode T/F)
     --Devmode function in scripts.lua
 
-    DevMode(true, true)
+    DevMode(false, true)
 
     devlog("init", "start")
 
@@ -58,12 +58,17 @@ end
 
 function ready()
 
-    local player = api_get_player_instance()
-    api_define_property(player, "Hair-Dye", "none")
-
     local npcs = {
         {api_get_menu_objects(nil, "npc51"), "npc51"},
-        {api_get_menu_objects(nil, "npc52"), "npc52"} }
+        {api_get_menu_objects(nil, "npc52"), "npc52"}
+    }
+
+    local player = api_get_player_instance()
+    api_define_property(player, "Hair-Dye", "none")
+    for Key, Value in pairs(npcs) do
+        local temp = api_define_property(Value[1]["id"])
+        api_define_property(temp, "s_index", 1)
+    end
 
 
     for Key, Value in pairs(npcs) do
@@ -82,17 +87,18 @@ function ready()
     devlog("ready", "end")
 end
 
-local tick
+local tick = 0
+
 function clock()
 
-    tick = tick + 1
-    local npc = api_get_menu_objects(nil, "npc51")
+    tick = (tick % 3) + 1
+    local npc = api_get_menu_objects("npc51")
     local shopOpen
 
     if npc then shopOpen = api_get_property(api_get_property(npc[1]["menu_id"], "shop"), "open") end
 
     if shopOpen then
-        rotate_stock("npc51", Hair_Dye:insert(Hair_Dye))
+        rotate_stock("npc51", table.insert(Hair_Dye, Hair_Dye))
     end
 
     devlog("clock", tick)

@@ -22,7 +22,7 @@ Hair_Dye = {
     {"Orange",      MOD_NAME .. "_hair_dye_orange"},
     {"Yellow",      MOD_NAME .. "_hair_dye_yellow"},
     {"Green",       MOD_NAME .. "_hair_dye_green"},
-    {"Turqoise ",   MOD_NAME .. "_hair_dye_turqoise"},
+    {"Turqoise",   MOD_NAME .. "_hair_dye_turqoise"},
     {"Blue",        MOD_NAME .. "_hair_dye_blue"},
     {"Royal_Blue",  MOD_NAME .. "_hair_dye_royal_blue"},
     {"Purple",      MOD_NAME .. "_hair_dye_purple"},
@@ -160,8 +160,7 @@ function define_hair_npc()
           "The weather is something to get used to, huh?"
         },
         walking = true,
-        shop = true,
-        s_index = 1
+        shop = true
         },
     "sprites/hair_npc/standing.png",
     "sprites/hair_npc/standing_h.png",
