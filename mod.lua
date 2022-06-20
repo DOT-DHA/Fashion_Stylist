@@ -27,11 +27,11 @@ local base_colors = {
     {  {149, 108, 97},   {129, 88, 84},   {112, 73, 74} } }
 
 function register()
-    local name = MOD_NAME
-    local hooks = {"click", "ready"}
-    local modules = {"hair", "overalls", "scripts"}
-
-    return {name, hooks, modules}
+    return {
+        name = MOD_NAME,
+        hooks = {"click", "ready", "clock"},
+        modules = {"hair", "overalls", "scripts"}
+    }
 end
 
 
@@ -82,10 +82,9 @@ function ready()
     devlog("ready", "end")
 end
 
-
+local tick
 function clock()
 
-    local tick
     tick = tick + 1
     local npc = api_get_menu_objects(nil, "npc51")
     local shopOpen
@@ -93,7 +92,7 @@ function clock()
     if npc then shopOpen = api_get_property(api_get_property(npc[1]["menu_id"], "shop"), "open") end
 
     if shopOpen then
-        rotate_stock("npc51", {"log"})
+        rotate_stock("npc51", Hair_Dye:insert(Hair_Dye))
     end
 
     devlog("clock", tick)
@@ -105,28 +104,27 @@ function rotate_stock(npc_id, stock_table)
 
     if npc_object then
 
+        local index = api_get_property(npc_object[1], "s_index")
         local shop_id = api_get_property(npc_object[1]["menu_id"], "shop")
 
         if shop_id ~= nil then
 
           local shop_slots = api_get_slots(shop_id)
           local i_end = #stock_table
-          i_end = i_end - (i_end//10)*10
+          i_end = i_end - (i_end//9)*9
 
           for i=1, i_end do
-            api_slot_set(shop_slots[i+1]["id"],stock_table[stock_table[1]+1][i],0)
+            api_slot_set(shop_slots[index]["id"],stock_table[i][2],0)
+            index = index % 10 + 1
           end
-          if i_end < 10 then
-            for i=i_end+1, 10 do
-              api_slot_clear(shop_slots[i+1]["id"])
+
+          if i_end < 9 then
+            for i=i_end+1, 9 do
+              api_slot_clear(shop_slots[i]["id"])
             end
           end
 
-          if stock_table[1]+1 == #stock_table then
-            stock_table[1] = 1
-          else
-            stock_table[1] = stock_table[1] + 1
-          end
+          api_slot_set(shop_slots[10]["id"], MOD_NAME .. "_hair_dye_remover", 0)
         end
     end
 end

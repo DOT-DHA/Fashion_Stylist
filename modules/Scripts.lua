@@ -1,7 +1,7 @@
 --scripts.lua
 --This file is mainly for defining commands and dev functions
 
-LOGS = false
+local LOGS = false
 
 function DevMode(turnOnLogs, turnOnDevMode)
     LOGS = turnOnLogs

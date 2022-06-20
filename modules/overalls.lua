@@ -1,8 +1,6 @@
 --overalls.lua
 --This file defines everything for the overall items and NPC's
 
-overallIndex = 1
-
 overall_colors = {
     Jeans_Gold_Buttons  = {  {212, 175, 55},  {66, 111, 128},   {51, 90, 112} },
     DOT                 = {   {154, 83, 54},   {42, 67, 122},     {9, 14, 26} } }
