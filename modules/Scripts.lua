@@ -12,11 +12,10 @@ function DevMode(turnOnLogs, turnOnDevMode)
     api_define_command("/overalls","Command_Overall")
 end
 
-function Command_Dye(...)
+function Command_Dye()
     --Items, objects, and menu objects use your MOD_NAME in their oid
     --Flowers, bees, walls and NPCs DO NOT use your MOD_NAME in their oid
-
-    local amount = arg[1] and arg[1] or 10
+    local amount = 10
 
     for Key, Value in pairs(Hair_Dye) do
         api_give_item(Value[2], amount)

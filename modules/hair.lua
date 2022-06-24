@@ -22,7 +22,7 @@ Hair_Dye = {
     {"Orange",      MOD_NAME .. "_hair_dye_orange"},
     {"Yellow",      MOD_NAME .. "_hair_dye_yellow"},
     {"Green",       MOD_NAME .. "_hair_dye_green"},
-    {"Turqoise",   MOD_NAME .. "_hair_dye_turqoise"},
+    {"Turqoise",    MOD_NAME .. "_hair_dye_turqoise"},
     {"Blue",        MOD_NAME .. "_hair_dye_blue"},
     {"Royal_Blue",  MOD_NAME .. "_hair_dye_royal_blue"},
     {"Purple",      MOD_NAME .. "_hair_dye_purple"},
@@ -36,19 +36,19 @@ Special_Hair_Dye = {
 }
 
 hair_recipes = {
-    {"t1", Hair_Dye[1][2],                  { {"sawdust1", 5},  {"dye1", 10}                } },
-    {"t1", Hair_Dye[2][2],                  { {"sawdust1", 5},  {"dye5", 10}                } },
-    {"t1", Hair_Dye[3][2],                  { {"sawdust1", 5},  {"dye3", 10}                } },
-    {"t1", Hair_Dye[4][2],                  { {"sawdust1", 5},  {"dye4", 10}                } },
+    {"t1", Hair_Dye[1][2],                  { {"sawdust1", 5}, { "dye1", 10}                } },
+    {"t1", Hair_Dye[2][2],                  { {"sawdust1", 5}, { "dye5", 10}                } },
+    {"t1", Hair_Dye[3][2],                  { {"sawdust1", 5}, { "dye3", 10}                } },
+    {"t1", Hair_Dye[4][2],                  { {"sawdust1", 5}, { "dye4", 10}                } },
     {"t1", Hair_Dye[5][2],                  { {"sawdust1", 5}, {"dye13", 10}                } },
-    {"t1", Hair_Dye[6][2],                  { {"sawdust1", 5},  {"dye2", 10}                } },
-    {"t1", Hair_Dye[7][2],                  { {"sawdust1", 5},  {"dye2",  7},  {"dye7",  3} } },
-    {"t1", Hair_Dye[8][2],                  { {"sawdust1", 5},  {"dye6", 10}                } },
+    {"t1", Hair_Dye[6][2],                  { {"sawdust1", 5}, { "dye2", 10}                } },
+    {"t1", Hair_Dye[7][2],                  { {"sawdust1", 5}, { "dye2",  7}, {"dye7",   3} } },
+    {"t1", Hair_Dye[8][2],                  { {"sawdust1", 5}, { "dye6", 10}                } },
     {"t1", Hair_Dye[9][2],                  { {"sawdust1", 5}, {"dye15", 10}                } },
-    {"t1", Special_Hair_Dye[1][2],          { {"sawdust1", 5},  {"dye5", 10}, {"dye12", 12} } },
-    {"t1", Special_Hair_Dye[2][2],          { {"sawdust1", 5}, {"dye14",  7},  {"dye7",  3} } },
-    {"t1", Special_Hair_Dye[3][2],          { {"sawdust1", 5}, {"dye15",  7},  {"dye8",  3} } },
-    {"t1", MOD_NAME .. "_hair_dye_remover", { {"sawdust1", 5},  {"dye9", 10}                } }
+    {"t1", Special_Hair_Dye[1][2],          { {"sawdust1", 5}, { "dye5", 10}, {"dye12", 12} } },
+    {"t1", Special_Hair_Dye[2][2],          { {"sawdust1", 5}, {"dye14",  7}, { "dye7",  3} } },
+    {"t1", Special_Hair_Dye[3][2],          { {"sawdust1", 5}, {"dye15",  7}, { "dye8",  3} } },
+    {"t1", MOD_NAME .. "_hair_dye_remover", { {"sawdust1", 5}, { "dye9", 10}                } }
 }
 
 --Defining all hair items
@@ -121,8 +121,7 @@ function define_hair_items()
             Value[2],
             Value[3]
         )
-
-        devlog("Dye recipe" .. Value[2], res_def)
+        devlog("Dye recipe " .. Value[2], res_def)
     end
 end
 

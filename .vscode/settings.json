@@ -39,6 +39,11 @@
         "api_get_property",
         "api_set_property",
         "api_slot_set",
-        "api_slot_clear"
+        "api_slot_clear",
+        "api_get_inst",
+        "data",
+        "api_get_data",
+        "api_set_data",
+        "save"
     ]
 }
