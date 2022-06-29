@@ -12,8 +12,7 @@ local base_colors = {
     { { 68, 100, 131}, { 50,  74,  98}, { 36,  55,  82} },
     { {118,  91, 105}, { 94,  73,  90}, { 67,  55,  74} },
     { {149, 117, 126}, {118,  91, 105}, { 94,  73,  90} },
-    { {162, 134, 142}, {149, 117, 126}, {118,  91, 105} },
-    { {115,  60,  78}, { 97,  50,  66}, { 79,  41,  56} },
+    { {162, 134, 142}, {149, 117, 126}, {118,  91, 105} },    { {115,  60,  78}, { 97,  50,  66}, { 79,  41,  56} },
     { {174,  94,  94}, {145,  71,  78}, {122,  53,  68} },
     { {212, 134,  83}, {202, 118,  78}, {161,  80,  63} },
     { {237, 184,  92}, {209, 147,  71}, {191, 120,  65} },
@@ -140,7 +139,7 @@ function clock()
     local shopOpen
 
     if npc then shopOpen = api_get_property(api_get_property(npc[1]["menu_id"], "shop"), "open") end
-    if tick == 3 then
+    if tick == 1 then
         if shopOpen then
             rotate_stock("npc51", Hair_Dye)
             local index = api_get_property(npc[1]["id"], "s_index")
@@ -148,7 +147,7 @@ function clock()
         end
     end
 
-    --devlog("clock", tick)
+    api_log("clock", tick)
 end
 
 function rotate_stock(npc_id, stock_table)
@@ -206,7 +205,7 @@ function click(button, click_type)
                     api_slot_clear(mouse["id"])
                 end
 
-                if MOD_DATA["Hair_Dye"] == "none" then
+                if MOD_DATA["Current_Dye"] == "none" then
 
                     --Create a notification
                     api_set_notification("notice", "fashion_stylist_hair_dye_remover", "Dye Removed", "Cant remove any more dye")
@@ -244,7 +243,7 @@ function click(button, click_type)
                             api_set_property(mouse["id"], "item", "")
                         end
 
-                        if MOD_DATA["Hair_Dye"] == Value[1] then
+                        if MOD_DATA["Current_Dye"] == Value[1] then
 
                             --Create a notification
                             api_set_notification("notice", Value[2], "Already Dyed", "Cant dye any more")
@@ -283,7 +282,7 @@ function click(button, click_type)
                             api_set_property(mouse["id"], "item", "")
                         end
 
-                        if MOD_DATA["Hair_Dye"] == Value[1] then
+                        if MOD_DATA["Current_Dye"] == Value[1] then
 
                             --Create a notification
                             api_set_notification("notice", Value[2], "Already Dyed", "Cant dye any more")
