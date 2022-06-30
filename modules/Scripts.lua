@@ -5,11 +5,17 @@ local LOGS = false
 
 function DevMode(turnOnLogs, turnOnDevMode)
     LOGS = turnOnLogs
+
     api_set_devmode(turnOnDevMode)
+
     api_log("DevMode", "developer mode is  " .. (turnOnDevMode and "on" or "off"))
-    api_log("DevMode", "LOGS are " .. (turnOnLogs and "on" or "off"))
-    api_define_command("/dyes","Command_Dye")
-    api_define_command("/overalls","Command_Overall")
+    api_log("DevMode", "logs are " .. (turnOnLogs and "on" or "off"))
+
+    local def_command = api_define_command("/dyes","Command_Dye")
+    devlog("defined /dyes command", def_command)
+
+    def_command = api_define_command("/overalls","Command_Overall")
+    devlog("defined /overalls command", def_command)
 end
 
 function Command_Dye()

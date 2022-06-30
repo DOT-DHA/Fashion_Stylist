@@ -35,21 +35,21 @@ Special_Hair_Dye = {
     {"Beenus",      MOD_NAME .. "_hair_dye_beenus"}
 }
 
-hair_recipes = {
-    {"t1", Hair_Dye[1][2],                  { {"sawdust1", 5}, { "dye1", 10}                } },
-    {"t1", Hair_Dye[2][2],                  { {"sawdust1", 5}, { "dye5", 10}                } },
-    {"t1", Hair_Dye[3][2],                  { {"sawdust1", 5}, { "dye3", 10}                } },
-    {"t1", Hair_Dye[4][2],                  { {"sawdust1", 5}, { "dye4", 10}                } },
-    {"t1", Hair_Dye[5][2],                  { {"sawdust1", 5}, {"dye13", 10}                } },
-    {"t1", Hair_Dye[6][2],                  { {"sawdust1", 5}, { "dye2", 10}                } },
-    {"t1", Hair_Dye[7][2],                  { {"sawdust1", 5}, { "dye2",  7}, {"dye7",   3} } },
-    {"t1", Hair_Dye[8][2],                  { {"sawdust1", 5}, { "dye6", 10}                } },
-    {"t1", Hair_Dye[9][2],                  { {"sawdust1", 5}, {"dye15", 10}                } },
-    {"t1", Special_Hair_Dye[1][2],          { {"sawdust1", 5}, { "dye5", 10}, {"dye12", 12} } },
-    {"t1", Special_Hair_Dye[2][2],          { {"sawdust1", 5}, {"dye14",  7}, { "dye7",  3} } },
-    {"t1", Special_Hair_Dye[3][2],          { {"sawdust1", 5}, {"dye15",  7}, { "dye8",  3} } },
-    {"t1", MOD_NAME .. "_hair_dye_remover", { {"sawdust1", 5}, { "dye9", 10}                } }
-}
+--hair_recipes = {
+--    {"t1", Hair_Dye[1][2],                  { {"sawdust1", 5}, { "dye1", 10}                } },
+--    {"t1", Hair_Dye[2][2],                  { {"sawdust1", 5}, { "dye5", 10}                } },
+--    {"t1", Hair_Dye[3][2],                  { {"sawdust1", 5}, { "dye3", 10}                } },
+--    {"t1", Hair_Dye[4][2],                  { {"sawdust1", 5}, { "dye4", 10}                } },
+--    {"t1", Hair_Dye[5][2],                  { {"sawdust1", 5}, {"dye13", 10}                } },
+--    {"t1", Hair_Dye[6][2],                  { {"sawdust1", 5}, { "dye2", 10}                } },
+--    {"t1", Hair_Dye[7][2],                  { {"sawdust1", 5}, { "dye2",  7}, {"dye7",   3} } },
+--    {"t1", Hair_Dye[8][2],                  { {"sawdust1", 5}, { "dye6", 10}                } },
+--    {"t1", Hair_Dye[9][2],                  { {"sawdust1", 5}, {"dye15", 10}                } },
+--    {"t1", Special_Hair_Dye[1][2],          { {"sawdust1", 5}, { "dye5", 10}, {"dye12", 12} } },
+--    {"t1", Special_Hair_Dye[2][2],          { {"sawdust1", 5}, {"dye14",  7}, { "dye7",  3} } },
+--    {"t1", Special_Hair_Dye[3][2],          { {"sawdust1", 5}, {"dye15",  7}, { "dye8",  3} } },
+--    {"t1", MOD_NAME .. "_hair_dye_remover", { {"sawdust1", 5}, { "dye9", 10}                } }
+--}
 
 --Defining all hair items
 function define_hair_items()
@@ -58,7 +58,7 @@ function define_hair_items()
     --Defining workbench for crafting
     local workbench_def = api_define_workbench(
         "Fashion Stylist", {
-            t1 = "Hair Dye",
+            t1 = "Hair Dye(WIP)",
             t2 = "Overalls(Coming Soon)",
             t3 = "(Unknown)",
             t4 = "(Unknown)",
@@ -115,14 +115,14 @@ function define_hair_items()
     devlog("Dye Remover", item_def)
 
     --Defining all dye recipies
-    for Key, Value in pairs(hair_recipes) do
-        local res_def = api_define_recipe(
-            Value[1],
-            Value[2],
-            Value[3]
-        )
-        devlog("Dye recipe " .. Value[2], res_def)
-    end
+    --for Key, Value in pairs(hair_recipes) do
+    --    local res_def = api_define_recipe(
+    --        Value[1],
+    --        Value[2],
+    --        Value[3]
+    --    )
+    --    devlog("Dye recipe " .. Value[2], res_def)
+    --end
 end
 
 --Defining hair NPC
