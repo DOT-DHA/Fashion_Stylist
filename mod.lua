@@ -142,7 +142,7 @@ function ready()
                 api_destroy_inst(Value[1][i]["id"])
             end
         end
-
+        
         local def_prop = api_define_property(Value[1][1]["id"], "s_index", 1)
         devlog("define npc shop index", def_prop)
     end
