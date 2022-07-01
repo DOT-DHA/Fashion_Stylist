@@ -18,21 +18,21 @@ hair_colors = {
 }
 
 Hair_Dye = {
-    {"Red",         MOD_NAME .. "_hair_dye_red"},
-    {"Orange",      MOD_NAME .. "_hair_dye_orange"},
-    {"Yellow",      MOD_NAME .. "_hair_dye_yellow"},
-    {"Green",       MOD_NAME .. "_hair_dye_green"},
-    {"Turqoise",    MOD_NAME .. "_hair_dye_turqoise"},
-    {"Blue",        MOD_NAME .. "_hair_dye_blue"},
-    {"Royal_Blue",  MOD_NAME .. "_hair_dye_royal_blue"},
-    {"Purple",      MOD_NAME .. "_hair_dye_purple"},
-    {"Pink",        MOD_NAME .. "_hair_dye_pink"}
+    {"Red",         MOD_NAME .. "_hair_red"},
+    {"Orange",      MOD_NAME .. "_hair_orange"},
+    {"Yellow",      MOD_NAME .. "_hair_yellow"},
+    {"Green",       MOD_NAME .. "_hair_green"},
+    {"Turqoise",    MOD_NAME .. "_hair_turqoise"},
+    {"Blue",        MOD_NAME .. "_hair_blue"},
+    {"Royal_Blue",  MOD_NAME .. "_hair_royal_blue"},
+    {"Purple",      MOD_NAME .. "_hair_purple"},
+    {"Pink",        MOD_NAME .. "_hair_pink"}
 }
 
 Special_Hair_Dye = {
-    {"Mushy",       MOD_NAME .. "_hair_dye_mushy"},
-    {"ZooBot",      MOD_NAME .. "_hair_dye_zoobot"},
-    {"Beenus",      MOD_NAME .. "_hair_dye_beenus"}
+    {"Mushy",       MOD_NAME .. "_hair_mushy"},
+    {"ZooBot",      MOD_NAME .. "_hair_zoobot"},
+    {"Beenus",      MOD_NAME .. "_hair_beenus"}
 }
 
 --hair_recipes = {
@@ -71,7 +71,7 @@ function define_hair_items()
     --Defining normal hair items
     for Key, Value in pairs(Hair_Dye) do
         local item_def = api_define_item({
-            id = "hair_dye_".. Value[1]:lower(),
+            id = "hair_".. Value[1]:lower(),
             name = Value[1]:gsub("_"," ") .. " Dye",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
@@ -87,7 +87,7 @@ function define_hair_items()
     --Defining special hair items
     for Key, Value in pairs(Special_Hair_Dye) do
         local item_def = api_define_item({
-            id = "hair_dye_".. Value[1]:lower(),
+            id = "hair_".. Value[1]:lower(),
             name = Value[1]:gsub("_"," ") .. "'s Special Dye",
             category = "Decoration",
             tooltip = "Right click to dye your hair.",
@@ -102,7 +102,7 @@ function define_hair_items()
 
     --Defining dye remover item
     local item_def = api_define_item({
-        id        = "hair_dye_remover",
+        id        = "hair_remover",
         name      = "Dye Remover",
         category  = "Decoration",
         tooltip   = "Right click to remove dye from your hair.",
@@ -151,7 +151,7 @@ function define_hair_npc()
             Hair_Dye[7][2],
             Hair_Dye[8][2],
             Hair_Dye[9][2],
-            MOD_NAME .. "_hair_dye_remover"
+            MOD_NAME .. "_hair_remover"
         },
         greeting = "Howdy!",
         dialogue = {
